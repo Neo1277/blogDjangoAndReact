@@ -1,0 +1,4 @@
+
+export const GENRES_LOADING = 'GENRES_LOADING';
+export const GENRES_FAILED = 'GENRES_FAILED';
+export const ADD_GENRES = 'ADD_GENRES';

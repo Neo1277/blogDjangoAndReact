@@ -1,0 +1,100 @@
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
+
+.header {
+  height: 110vh;
+  min-height: 500px;
+  background-image: url(./static/johnconstantinered.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
+  color: #800080;
+  font-size:80%;
+}
+
+.footer{
+  background-color:black;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  color:floralwhite;
+}
+
+
+.headerTitle{
+  color:white;
+  font-size: 200%;
+}
+
+.headerText{
+  color:white;
+  font-size:100%;
+}
+
+/*
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+  background:#8B008B ;
+  color:floralwhite;
+}
+*/
+address{
+  font-size:80%;
+  margin:0px;
+  color:floralwhite;
+}
+
+.navbar-dark {
+  background-color: black;
+}
+
+/*
+.navbar-dark {
+  background-color:#800080;
+}
+
+
+.footer{
+  background-color:#8B008B;
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+  color:floralwhite;
+}
+
+
+*/
+
+.mainContainer {
+    /* The image used */
+    background-image: url(./static/violetshapes.jpg);
+
+    /* Full height */
+    /*opacity: 0.10;*/
+    /* Center and scale the image nicely */
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/*
+.mainContainer {*/
+  
+    /* The image used */
+    /*background-image: url(./static/batmangray.jpg);*/
+
+    /* Full height */
+    /*opacity: 0.10;*/
+    /* Center and scale the image nicely */
+    /*
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}*/
