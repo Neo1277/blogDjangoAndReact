@@ -8,7 +8,6 @@ import { baseUrlApiRest } from '../shared/baseUrl';
  */
 function PostContent(props){
 	
-	
 	if (props.isLoading) {
 		
         return(
@@ -20,25 +19,25 @@ function PostContent(props){
             <h4>{props.errMess}</h4>
         );
     }
-	else{ 
+	else{ console.log(JSON.stringify(props.genre.postsgen  ) +   'jajaj');
 		return(
 			<div class="container">
 				<h4>Posts</h4>
 				
 				<div className="row">
 
-					{props.genres.postsgen.map((field, i) => { 
+					{props.genre.postsgen.map((field, i) => { 
 						
 						return(
-						<div className="col-12 col-md-4 m-20">
-							<Card>
-									<CardImg top width="100%" src={baseUrlApiRest + field.post_genre} alt={field.name} />
+							<div className="col-12 col-md-4 m-20">
+								<Card>
+									<CardImg top width="100%" src={baseUrlApiRest + field.image_post} alt={field.title} />
 									<CardBody>
 										<CardTitle>{field.title} </CardTitle>
 										<CardText>{field.description}</CardText>
 									</CardBody>
-							</Card>
-						</div>				
+								</Card>
+							</div>				
 				
 						);
 						

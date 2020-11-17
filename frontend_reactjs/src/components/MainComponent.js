@@ -44,14 +44,32 @@ class Main extends Component {
     //This calls GenreContent and pass it all the properties
     const PostWithId = ({match}) => {
       return(
-        <PostContent 
-        genre={this.props.genres.genres.filter((genre) => genre.postsgen.slug === match.params.slug)[0]}
+        <PostContent genre={this.props.genres.genres.filter((genre)  =>  genre.postsgen.filter((postsgen) => postsgen.slug === match.params.slug )[0]  )[0] }
           isLoading={this.props.genres.isLoading}
           errMess={this.props.genres.errMess}
         />
       );
     };
-    //alert(JSON.stringify(this.props.genres.genres));
+    /*
+    const PostWithId = ({match}) => {
+      return(
+        <PostContent genre={this.props.genres.genres.filter((genre)  => genre.postsgen.filter((postsgen) => postsgen.slug === match.params.slug )[0] )[0]}
+          isLoading={this.props.genres.isLoading}
+          errMess={this.props.genres.errMess}
+        />
+      );
+    };
+
+    const PostWithId = ({match}) => {
+      return(
+        <PostContent genre={this.props.genres.genres.filter((genre)  => genre.postsgen.slug === match.params.slug)[0]}
+          isLoading={this.props.genres.isLoading}
+          errMess={this.props.genres.errMess}
+        />
+      );
+    };*/
+
+    //alert(JSON.stringify(this.props.genres.genres  ));
     /**
      * Set routes to open the differen pages calling the componets
      * And redirect to home if the url that the user type in the browser
