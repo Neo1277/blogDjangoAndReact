@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import Example from './SliderComponent';
 
 class Header extends Component{
 	constructor(props) {
@@ -19,7 +20,7 @@ class Header extends Component{
 	}
 	render(){
 		return(
-			<div>
+			<>
 				<Navbar dark expand="md">
 					<div className="container">
 						<NavbarToggler onClick={this.toggleNav} />
@@ -42,17 +43,8 @@ class Header extends Component{
 						</Collapse>
 					</div>
 				</Navbar>
-				<div className="header">
-					<div className="container">
-						<div className="row row-header">
-							<div className="col-12 col-sm-6">
-								<h1 className="headerTitle">My blog</h1>
-								<p className="headerText">Integration for react and django</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<Example />
+			</>
 		);
 	}
 }

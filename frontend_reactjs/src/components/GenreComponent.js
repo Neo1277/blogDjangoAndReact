@@ -25,8 +25,8 @@ function GenreContent(props){
 		 * Iterate over object that is in the store
 		 */
 		return(
-			<div class="container">
-				<h4>Posts</h4>
+			<div class="container"><br />
+				<h2 algn="center">Posts</h2>
 				
 				<div className="row">
 					

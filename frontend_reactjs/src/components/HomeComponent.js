@@ -25,8 +25,8 @@ function Home(props){
 		 * Iterate over object that is in the store
 		 */
 		return(
-			<div class="container">
-				<h4>Posts</h4>
+			<div class="container"><br />
+			<h2 align="center">Categories</h2>
 				
 				<div className="row">
 

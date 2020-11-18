@@ -79,14 +79,12 @@ class Main extends Component {
     return (
       <div>
         <Header />
-          <div className="mainContainer">
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} />} />
               <Route path="/genre/:slug" component={GenreWithId} />
               <Route path="/post/:slug" component={PostWithId} />
               <Redirect to="/home" />
           </Switch>
-          </div>
         <Footer />
       </div>
       /*
