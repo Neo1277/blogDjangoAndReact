@@ -25,11 +25,11 @@ function GenreContent(props){
 		 * Iterate over object that is in the store
 		 */
 		return(
-			<div class="container"><br />
-				<h2 algn="center">Posts</h2>
-				
-				<div className="row">
+			<div class="container">
+				<h2 align="center">Posts</h2>
 					
+				<div class="row row-content">
+						
 					{props.genre.postsgen.map((field, i) => { 
 						
 						return(

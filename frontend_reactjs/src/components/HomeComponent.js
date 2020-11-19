@@ -25,10 +25,10 @@ function Home(props){
 		 * Iterate over object that is in the store
 		 */
 		return(
-			<div class="container"><br />
-			<h2 align="center">Categories</h2>
-				
-				<div className="row">
+			<div class="container">
+				<h2 align="center">Categories</h2>
+					
+				<div class="row row-content">
 
 					{props.genres.genres.map((field, i) => { 
 						

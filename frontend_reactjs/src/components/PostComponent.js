@@ -22,29 +22,29 @@ function PostContent(props){
 	else{ console.log(JSON.stringify(props.genre.postsgen  ) +   'jajaj');
 		return(
 			<div class="container">
-				<h4>Posts</h4>
-				
-				<div className="row">
+					<h2 align="center">Posts</h2>
+					
+					<div className="row row-content">
 
-					{props.genre.postsgen.map((field, i) => { 
-						
-						return(
-							<div className="col-12 col-md-4 m-20">
-								<Card>
-									<CardImg top width="100%" src={baseUrlApiRest + field.image_post} alt={field.title} />
-									<CardBody>
-										<CardTitle>{field.title} </CardTitle>
-										<CardText>{field.description}</CardText>
-									</CardBody>
-								</Card>
-							</div>				
-				
-						);
-						
-					}) }
+						{props.genre.postsgen.map((field, i) => { 
+							
+							return(
+								<div className="col-12 col-md-4 m-20">
+									<Card>
+										<CardImg top width="100%" src={baseUrlApiRest + field.image_post} alt={field.title} />
+										<CardBody>
+											<CardTitle>{field.title} </CardTitle>
+											<CardText>{field.description}</CardText>
+										</CardBody>
+									</Card>
+								</div>				
+					
+							);
+							
+						}) }
 
 
-				</div>
+					</div>
 
 							
 			</div>

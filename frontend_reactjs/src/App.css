@@ -99,3 +99,19 @@ address{
     background-repeat: no-repeat;
     background-size: cover;
 }*/
+
+/*
+.carousel {
+  background: #512DA8; 
+}*/
+
+.carousel .carousel-item {
+  height: 400px; 
+}
+
+.carousel .carousel-item img {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  min-height: 300px; width: 100%; 
+}
