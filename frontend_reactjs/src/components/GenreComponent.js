@@ -35,7 +35,7 @@ function GenreContent(props){
 						return(
 						<div className="col-12 col-md-4 m-20">
 							<Card>
-								<Link to={`/post/${field.slug}`} >
+								<Link to={`/genres/${props.genre.slug}/${field.slug}`} >
 									<CardImg top width="100%" src={baseUrlApiRest + field.image_post} alt={field.title} />
 								</Link>
 								<CardBody>

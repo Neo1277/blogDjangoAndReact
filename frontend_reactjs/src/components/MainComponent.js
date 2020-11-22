@@ -28,6 +28,20 @@ class Main extends Component {
     this.props.fetchGenres();
   }
 
+  /**
+   * Function for retrieving only te post
+   * (Way of filter nested object)
+   */
+  getPostObject(genreslug, postslug){
+
+    let genre = this.props.genres.genres.filter((genre) => genre.slug === genreslug)[0]
+
+    let postc = genre.postsgen.filter((post) => post.slug === postslug)[0]
+
+    return postc;
+  }
+
+
   render(){
 
     
@@ -42,34 +56,17 @@ class Main extends Component {
     };
     
     //This calls GenreContent and pass it all the properties
+
     const PostWithId = ({match}) => {
+      
       return(
-        <PostContent genre={this.props.genres.genres.filter((genre)  =>  genre.postsgen.filter((postsgen) => postsgen.slug === match.params.slug )[0]  )[0] }
-          isLoading={this.props.genres.isLoading}
-          errMess={this.props.genres.errMess}
-        />
-      );
-    };
-    /*
-    const PostWithId = ({match}) => {
-      return(
-        <PostContent genre={this.props.genres.genres.filter((genre)  => genre.postsgen.filter((postsgen) => postsgen.slug === match.params.slug )[0] )[0]}
+        <PostContent post={this.getPostObject(match.params.sluggenre, match.params.slugpost)}
           isLoading={this.props.genres.isLoading}
           errMess={this.props.genres.errMess}
         />
       );
     };
 
-    const PostWithId = ({match}) => {
-      return(
-        <PostContent genre={this.props.genres.genres.filter((genre)  => genre.postsgen.slug === match.params.slug)[0]}
-          isLoading={this.props.genres.isLoading}
-          errMess={this.props.genres.errMess}
-        />
-      );
-    };*/
-
-    //alert(JSON.stringify(this.props.genres.genres  ));
     /**
      * Set routes to open the differen pages calling the componets
      * And redirect to home if the url that the user type in the browser
@@ -82,25 +79,11 @@ class Main extends Component {
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} />} />
               <Route path="/genre/:slug" component={GenreWithId} />
-              <Route path="/post/:slug" component={PostWithId} />
+              <Route path="/genres/:sluggenre/:slugpost" component={PostWithId} />
               <Redirect to="/home" />
           </Switch>
         <Footer />
       </div>
-      /*
-      <div>
-        <Header />
-          <div className="mainContainer">
-            <Switch>
-              <Route path='/home' component={() => <Home genres={this.props.genres} />} />
-              <Route path="/:slug" component={GenreWithId} />
-              <Route path="/post/:slug" component={PostWithId} />
-              <Redirect to="/home" />
-          </Switch>
-          </div>
-        <Footer />
-      </div>
-      */
     );
   }
 }
