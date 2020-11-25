@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Loading } from './LoadingComponent';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 
@@ -12,7 +13,7 @@ function GenreContent(props){
 	if (props.isLoading) {
 		
         return(
-            <p>Loading</p>
+            <Loading />
         );
     }
     else if (props.errMess) {

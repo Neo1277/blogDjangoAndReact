@@ -33,9 +33,10 @@ class Main extends Component {
    * (Way of filter nested object)
    */
   getPostObject(genreslug, postslug){
-
+    //console.log(JSON.stringify(this.props.genres.genres) +   ' get postobject method');
     let genre = this.props.genres.genres.filter((genre) => genre.slug === genreslug)[0]
 
+    //console.log(JSON.stringify(genre) +   ' get postobject method');
     let postc = genre.postsgen.filter((post) => post.slug === postslug)[0]
 
     return postc;
@@ -46,7 +47,7 @@ class Main extends Component {
 
     
     //This calls GenreContent and pass it all the properties
-    const GenreWithId = ({match}) => {
+    const GenreWithSlug = ({match}) => {
       return(
         <GenreContent genre={this.props.genres.genres.filter((genre) => genre.slug === match.params.slug)[0]}
           isLoading={this.props.genres.isLoading}
@@ -57,10 +58,10 @@ class Main extends Component {
     
     //This calls GenreContent and pass it all the properties
 
-    const PostWithId = ({match}) => {
+    const PostWithSlug = ({match}) => {
       
       return(
-        <PostContent post={this.getPostObject(match.params.sluggenre, match.params.slugpost)}
+        <PostContent post={this.props.genres.genres.filter((genre) => genre.slug === match.params.sluggenre)[0].postsgen.filter((post) => post.slug === match.params.slugpost)[0]}
           isLoading={this.props.genres.isLoading}
           errMess={this.props.genres.errMess}
         />
@@ -68,7 +69,7 @@ class Main extends Component {
     };
 
     /**
-     * Set routes to open the differen pages calling the componets
+     * Set routes to open the differen pages calling the components
      * And redirect to home if the url that the user type in the browser
      * does not match with any url from here
      */
@@ -78,8 +79,8 @@ class Main extends Component {
         <Header />
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} />} />
-              <Route path="/genre/:slug" component={GenreWithId} />
-              <Route path="/genres/:sluggenre/:slugpost" component={PostWithId} />
+              <Route path="/genre/:slug" component={GenreWithSlug} />
+              <Route path="/genres/:sluggenre/:slugpost" component={PostWithSlug} />
               <Redirect to="/home" />
           </Switch>
         <Footer />

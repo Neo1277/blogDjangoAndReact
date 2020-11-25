@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-/* Set reducer to handle errors or display data */
+/* Set reducer to handle redux state */
 export const Genres = (state = { 
     isLoading: true,
     errMess: null,

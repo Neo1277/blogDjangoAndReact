@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import { Loading } from './LoadingComponent';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 
@@ -11,7 +12,7 @@ function PostContent(props){
 	if (props.isLoading) {
 		
         return(
-            <p>Loading</p>
+            <Loading />
         );
     }
     else if (props.errMess) {
@@ -19,7 +20,8 @@ function PostContent(props){
             <h4>{props.errMess}</h4>
         );
     }
-	else{ console.log(JSON.stringify(props.post  ) +   'jajaj');
+	else{ 
+		//console.log(JSON.stringify(props.post  ) +   ' postcontent');
 		return(
 			<div class="container">
 					<h2 align="center">Posts</h2>
