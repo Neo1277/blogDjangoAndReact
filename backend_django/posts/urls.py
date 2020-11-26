@@ -2,7 +2,8 @@ from django.urls import path
 from django.conf.urls import url 
 from . import views
 
-#Set endpoint for requests
+#Set end point for requests
 urlpatterns = [
+    url(r'^api/genres$', views.genres_list),
     url(r'^api/posts$', views.posts_list)
 ]

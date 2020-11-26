@@ -1,7 +1,5 @@
 import React from 'react';
-//import { Link } from "react-router-dom";
 import { Loading } from './LoadingComponent';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 
 /**
@@ -9,42 +7,39 @@ import { baseUrlApiRest } from '../shared/baseUrl';
  */
 function PostContent(props){
 	
-	if (props.isLoading) {
+	if (props.postisLoading) {
 		
         return(
             <Loading />
         );
     }
-    else if (props.errMess) {
+    else if (props.posterrMess) {
         return(
-            <h4>{props.errMess}</h4>
+            <h4>{props.posterrMess}</h4>
         );
     }
 	else{ 
 		//console.log(JSON.stringify(props.post  ) +   ' postcontent');
 		return(
+
+
 			<div className="container">
-					<h2 align="center">Posts</h2>
-					
-					<div className="row row-content">
-
-						
-						<div className="col-12 col-md-4 m-20">
-							<Card>
-								<CardImg top width="100%" src={baseUrlApiRest + props.post.image_post} alt={props.post.title} />
-								<CardBody>
-									<CardTitle>{props.post.title} </CardTitle>
-									<CardText>{props.post.description}</CardText>
-								</CardBody>
-							</Card>
-						</div>				
-					
-
-
+				<div className="row">
+					<div className="col-12">
+						<h3>{props.post.title}</h3>
+						<hr />
+						<img top width="100%" src={baseUrlApiRest + props.post.image_post} alt={props.post.title} />
+					</div>                
+				</div>
+				<div className="row row-content">
+					<div className="col-12 col-md-6">
+						<p>{props.post.description}</p>
+						<p>{props.post.content}</p>
 					</div>
-
-							
+				</div>
+	
 			</div>
+
         );
 	}
 }

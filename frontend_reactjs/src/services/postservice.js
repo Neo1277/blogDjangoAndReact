@@ -5,7 +5,11 @@ import http from "../shared/http-common";
 
 //Set end points for each request
 class PostDataService {
-  getAll() {
+  getAllGenres() {
+    return http.get("/genres");
+  }
+
+  getAllPosts() {
     return http.get("/posts");
   }
 

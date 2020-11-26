@@ -6,18 +6,20 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchGenres } from '../redux/ActionCreators';
+import { fetchGenres, fetchPosts } from '../redux/ActionCreators';
 
 /* Set data obtain from json-server with redux to the Cpmponent's props */
 const mapStateToProps = state => {
   return{
-    genres: state.genres
+    genres: state.genres,
+    posts: state.posts
   }
 }
 
 /* Set functions from ActionCreators redux to the Cpmponent's props and dispatch */
 const mapDispatchToProps = (dispatch) => ({
-  fetchGenres: () => { dispatch(fetchGenres())}
+  fetchGenres: () => { dispatch(fetchGenres())},
+  fetchPosts: () => { dispatch(fetchPosts())}
 });
 
 
@@ -26,22 +28,8 @@ class Main extends Component {
   //Execute this before render
   componentDidMount() {
     this.props.fetchGenres();
+    this.props.fetchPosts();
   }
-
-  /**
-   * Function for retrieving only te post
-   * (Way of filter nested object)
-   */
-  getPostObject(genreslug, postslug){
-    //console.log(JSON.stringify(this.props.genres.genres) +   ' get postobject method');
-    let genre = this.props.genres.genres.filter((genre) => genre.slug === genreslug)[0]
-
-    //console.log(JSON.stringify(genre) +   ' get postobject method');
-    let postc = genre.postsgen.filter((post) => post.slug === postslug)[0]
-
-    return postc;
-  }
-
 
   render(){
 
@@ -56,14 +44,13 @@ class Main extends Component {
       );
     };
     
-    //This calls GenreContent and pass it all the properties
-
+    //This calls PostContent and pass it all the properties
     const PostWithSlug = ({match}) => {
       
       return(
-        <PostContent post={this.props.genres.genres.filter((genre) => genre.slug === match.params.sluggenre)[0].postsgen.filter((post) => post.slug === match.params.slugpost)[0]}
-          isLoading={this.props.genres.isLoading}
-          errMess={this.props.genres.errMess}
+        <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
+          postisLoading={this.props.genres.isLoading}
+          posterrMess={this.props.genres.errMess}
         />
       );
     };

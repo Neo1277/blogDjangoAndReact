@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 
 
 @api_view(['GET'])
-def posts_list(request):
+def genres_list(request):
     if request.method == 'GET':
         
         """
@@ -29,3 +29,23 @@ def posts_list(request):
         #Call class serializer for sending json data to frontend with Django REST API
         genre_serializer = GenreSerializer(genre, many=True)
         return JsonResponse(genre_serializer.data, safe=False)
+
+
+
+@api_view(['GET'])
+def posts_list(request):
+    if request.method == 'GET':
+        
+        """
+        Querys with more than one row to serialize data
+        """
+        post = Post.objects.filter(status='1')
+        image = Image.objects.filter(post=post)
+        
+        name = request.GET.get('name', None)
+        if name is not None:
+            post = Genre.Post(title__icontains=title)
+        
+        #Call class serializer for sending json data to frontend with Django REST API
+        post_serializer = PostSerializer(post, many=True)
+        return JsonResponse(post_serializer.data, safe=False)
