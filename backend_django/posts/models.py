@@ -10,6 +10,8 @@ def get_file_path(instance, filename):
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join('posts', filename)
 
+#Source: Model field reference https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField
+
 class Genre(models.Model):
 
     #Text that will be shown in Django Admin fields for this model
@@ -59,6 +61,10 @@ class Post(models.Model):
     director = models.CharField(max_length=200)
     country = CountryField()
     image_post = models.ImageField(upload_to=get_file_path)
+
+    #Date fields for featured posts
+    initial_featured_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    end_featured_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
     def __str__(self):
         return self.title

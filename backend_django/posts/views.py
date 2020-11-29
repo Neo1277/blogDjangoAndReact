@@ -10,7 +10,9 @@ from posts.models import Genre, Post, Image
 from posts.serializers import GenreSerializer, PostSerializer
 from rest_framework.decorators import api_view
 
+from datetime import datetime
 
+#Function for genres list requests
 @api_view(['GET'])
 def genres_list(request):
     if request.method == 'GET':
@@ -31,7 +33,7 @@ def genres_list(request):
         return JsonResponse(genre_serializer.data, safe=False)
 
 
-
+#Function for posts list requests
 @api_view(['GET'])
 def posts_list(request):
     if request.method == 'GET':
@@ -44,7 +46,37 @@ def posts_list(request):
         
         name = request.GET.get('name', None)
         if name is not None:
-            post = Genre.Post(title__icontains=title)
+            post = Post.filter(title__icontains=title)
+        
+        #Call class serializer for sending json data to frontend with Django REST API
+        post_serializer = PostSerializer(post, many=True)
+        return JsonResponse(post_serializer.data, safe=False)
+
+#Function for featured posts requests
+@api_view(['GET'])
+def featured_posts_list(request):
+    if request.method == 'GET':
+        
+        """
+        Querys with more than one row to serialize data
+        Sources:
+
+        https://stackoverflow.com/a/48264548/9655579
+
+        https://stackoverflow.com/a/10040165/9655579
+        """
+
+        #Current date and time
+        current_date = datetime.now()
+        
+        #Filter featured posts: current datetime between datetimes fields in the database
+        post = Post.objects.filter(status='1', initial_featured_date__lte = current_date, end_featured_date__gte = current_date)
+
+        image = Image.objects.filter(post=post)
+        
+        name = request.GET.get('name', None)
+        if name is not None:
+            post = Post.filter(title__icontains=title)
         
         #Call class serializer for sending json data to frontend with Django REST API
         post_serializer = PostSerializer(post, many=True)
