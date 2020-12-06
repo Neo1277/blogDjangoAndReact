@@ -74,3 +74,41 @@ export const addPosts = (posts) => ({
   type: ActionTypes.ADD_POSTS,
   payload: posts
 });
+
+
+/* Request to Django Rest framework and show error or proceed to dispatch the data  */
+export const fetchFeaturedPosts = () => (dispatch) => {
+
+  dispatch(featuredpostsLoading(true));
+
+  return PostDataService.getFeaturedPosts()
+  /*.then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  })*/
+  .then(response => response.data)
+  .then(featuredposts => dispatch(addFeaturedPosts(featuredposts)))
+  .catch(error => dispatch(featuredpostsFailed(error.message)));
+}
+
+/* Call action type from post reducer */
+export const featuredpostsLoading = () => ({
+  type: ActionTypes.FEATUREDPOSTS_LOADING
+});
+
+/* Call action type from post reducer */
+export const featuredpostsFailed = (errmess) => ({
+  type: ActionTypes.FEATUREDPOSTS_FAILED,
+  payload: errmess
+});
+
+/* Call action type from post reducer */
+export const addFeaturedPosts = (featuredposts) => ({
+  type: ActionTypes.ADD_FEATUREDPOSTS,
+  payload: featuredposts
+});

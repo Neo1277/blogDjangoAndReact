@@ -5,7 +5,7 @@ import { baseUrlApiRest } from '../shared/baseUrl';
 /**
  * Show status if the page is Loading shows spinner else shows error or the page content
  */
-function PostContent(props){
+const PostContent = (props) => {
 	
 	if (props.postisLoading) {
 		

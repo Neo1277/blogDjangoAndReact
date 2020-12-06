@@ -6,20 +6,22 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchGenres, fetchPosts } from '../redux/ActionCreators';
+import { fetchGenres, fetchPosts, fetchFeaturedPosts } from '../redux/ActionCreators';
 
 /* Set data obtain from json-server with redux to the Cpmponent's props */
 const mapStateToProps = state => {
   return{
     genres: state.genres,
-    posts: state.posts
+    posts: state.posts,
+    featuredposts: state.featuredposts
   }
 }
 
 /* Set functions from ActionCreators redux to the Cpmponent's props and dispatch */
 const mapDispatchToProps = (dispatch) => ({
   fetchGenres: () => { dispatch(fetchGenres())},
-  fetchPosts: () => { dispatch(fetchPosts())}
+  fetchPosts: () => { dispatch(fetchPosts())},
+  fetchFeaturedPosts: () => { dispatch(fetchFeaturedPosts())}
 });
 
 
@@ -29,6 +31,7 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchGenres();
     this.props.fetchPosts();
+    this.props.fetchFeaturedPosts();
   }
 
   render(){
@@ -65,7 +68,7 @@ class Main extends Component {
       <div>
         <Header />
             <Switch>
-              <Route path='/home' component={() => <Home genres={this.props.genres} />} />
+              <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} />} />
               <Route path="/genre/:slug" component={GenreWithSlug} />
               <Route path="/genres/:sluggenre/:slugpost" component={PostWithSlug} />
               <Redirect to="/home" />

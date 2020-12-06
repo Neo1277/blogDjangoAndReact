@@ -43,11 +43,6 @@ class Header extends Component{
 						</Collapse>
 					</div>
 				</Navbar>
-				<div class="row row-content">
-        			<div class="col">
-						<Example />
-					</div>
-				</div>
 			</>
 		);
 	}

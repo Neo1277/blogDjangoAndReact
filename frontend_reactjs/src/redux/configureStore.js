@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import { Genres } from './genres';
 import { Posts } from './posts';
+import { FeaturedPosts } from './featuredPosts';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -9,7 +10,8 @@ export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
             genres: Genres,
-            posts: Posts
+            posts: Posts,
+            featuredposts: FeaturedPosts
         }),
         applyMiddleware(thunk, logger)
     );

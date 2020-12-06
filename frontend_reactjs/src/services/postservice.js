@@ -13,6 +13,10 @@ class PostDataService {
     return http.get("/posts");
   }
 
+  getFeaturedPosts() {
+    return http.get("/featured_posts");
+  }
+
 }
 
 export default new PostDataService();
