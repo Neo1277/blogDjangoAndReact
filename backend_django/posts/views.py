@@ -20,13 +20,14 @@ def genres_list(request):
         """
         Querys with more than one row to serialize data
         """
-        genre = Genre.objects.filter(show_menu_list='YES')
-        post = Post.objects.filter(genres=genre)
-        image = Image.objects.filter(post=post)
+        try:
+            genre = Genre.objects.filter(show_menu_list='YES')
+            post = Post.objects.filter(status='1', genres=genre)
+            image = Image.objects.filter(post=post)
+
+        except Genre.DoesNotExist or Post.DoesNotExist or image.DoesNotExist: 
+            return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
         
-        name = request.GET.get('name', None)
-        if name is not None:
-            genre = Genre.filter(name__icontains=name)
         
         #Call class serializer for sending json data to frontend with Django REST API
         genre_serializer = GenreSerializer(genre, many=True)
@@ -41,12 +42,14 @@ def posts_list(request):
         """
         Querys with more than one row to serialize data
         """
-        post = Post.objects.filter(status='1')
-        image = Image.objects.filter(post=post)
+
+        try:        
+            post = Post.objects.filter(status='1')
+            image = Image.objects.filter(post=post)
+
+        except Post.DoesNotExist or Image.DoesNotExist: 
+            return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
         
-        name = request.GET.get('name', None)
-        if name is not None:
-            post = Post.filter(title__icontains=title)
         
         #Call class serializer for sending json data to frontend with Django REST API
         post_serializer = PostSerializer(post, many=True)
@@ -66,17 +69,17 @@ def featured_posts_list(request):
         https://stackoverflow.com/a/10040165/9655579
         """
 
-        #Current date and time
-        current_date = datetime.now()
-        
-        #Filter featured posts: current datetime between datetimes fields in the database
-        post = Post.objects.filter(status='1', initial_featured_date__lte = current_date, end_featured_date__gte = current_date)
+        try:
+            #Current date and time
+            current_date = datetime.now()
+            
+            #Filter featured posts: current datetime between datetimes fields in the database
+            post = Post.objects.filter(status='1', initial_featured_date__lte = current_date, end_featured_date__gte = current_date)
 
-        image = Image.objects.filter(post=post)
-        
-        name = request.GET.get('name', None)
-        if name is not None:
-            post = Post.filter(title__icontains=title)
+            image = Image.objects.filter(post=post)
+            
+        except Post.DoesNotExist or Image.DoesNotExist: 
+            return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
         
         #Call class serializer for sending json data to frontend with Django REST API
         post_serializer = PostSerializer(post, many=True)

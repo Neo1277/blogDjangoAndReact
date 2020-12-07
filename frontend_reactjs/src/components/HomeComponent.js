@@ -31,7 +31,7 @@ const Home = (props) => {
 			<>
 				<div class="row row-content">
 					<div class="col">
-						<Slider featuredposts={props.featuredposts.featuredposts} />
+						<Slider dataposts={props.featuredposts.featuredposts} />
 					</div>
 				</div>
 				<div class="container">

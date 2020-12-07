@@ -79,5 +79,6 @@ class Comment(models.Model):
 class Image(models.Model):
     #Field for one to many relation and set related name to serialize data with json
     post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='imageps')
-    image_post_content = models.ImageField(upload_to=get_file_path)
+    image_post = models.ImageField(upload_to=get_file_path)
+    name = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=200, null=True, blank=True)

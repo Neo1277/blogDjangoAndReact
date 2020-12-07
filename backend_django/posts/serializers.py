@@ -16,10 +16,12 @@ class GenrePostSerializer(serializers.ModelSerializer):
 
 #Serialize Image for nested array
 class ImageSerializer(serializers.ModelSerializer):
+    #Set alias for field. Source: https://stackoverflow.com/a/43492545/9655579
+    title = serializers.CharField(source='name')
 
     class Meta:
         model = Image
-        fields = ('__all__')
+        fields = ['id','image_post','title','description']
 
 class PostSerializer(serializers.ModelSerializer):
     

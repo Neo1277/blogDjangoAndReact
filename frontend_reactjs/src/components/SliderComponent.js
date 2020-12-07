@@ -15,7 +15,7 @@ import { baseUrlApiRest } from '../shared/baseUrl';
 
 /**
  * Arrow function uses images, title from props (featured posts)
- * for retrieving featred posts using the slider
+ * for retrieving featured posts using the slider
  */
 const Slider = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,13 +23,13 @@ const Slider = (props) => {
 
   const next = () => {
     if (animating) return;
-    const nextIndex = activeIndex === props.featuredposts.length - 1 ? 0 : activeIndex + 1;
+    const nextIndex = activeIndex === props.dataposts.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   }
 
   const previous = () => {
     if (animating) return;
-    const nextIndex = activeIndex === 0 ? props.featuredposts.length - 1 : activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? props.dataposts.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   }
 
@@ -38,7 +38,7 @@ const Slider = (props) => {
     setActiveIndex(newIndex);
   }
 
-  const slides = props.featuredposts.map((item) => {
+  const slides = props.dataposts.map((item) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
@@ -46,7 +46,7 @@ const Slider = (props) => {
         key={baseUrlApiRest + item.image_post}
       >
         <img src={baseUrlApiRest + item.image_post} alt={item.title} />
-        <CarouselCaption captionText={item.title} captionHeader={item.title} />
+        <CarouselCaption captionText={item.description} captionHeader={item.title} />
       </CarouselItem>
     );
   });
@@ -57,7 +57,7 @@ const Slider = (props) => {
       next={next}
       previous={previous}
     >
-      <CarouselIndicators items={props.featuredposts} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      <CarouselIndicators items={props.dataposts} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}
       <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />

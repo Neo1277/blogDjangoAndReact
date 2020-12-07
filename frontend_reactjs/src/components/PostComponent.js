@@ -1,6 +1,7 @@
 import React from 'react';
 import { Loading } from './LoadingComponent';
 import { baseUrlApiRest } from '../shared/baseUrl';
+import Slider from './SliderComponent';
 
 /**
  * Show status if the page is Loading shows spinner else shows error or the page content
@@ -37,7 +38,11 @@ const PostContent = (props) => {
 						<p>{props.post.content}</p>
 					</div>
 				</div>
-	
+				<div class="row row-content">
+					<div class="col">
+						<Slider dataposts={props.post.imageps} />
+					</div>
+				</div>
 			</div>
 
         );
