@@ -59,7 +59,10 @@ class Post(models.Model):
     url_website = models.URLField(max_length=200, null=True, blank=True)
     url_video = models.URLField(max_length=200, null=True, blank=True)
     director = models.CharField(max_length=200)
+
+    #Field from django_countries library to get a list of countries and associate the post with it
     country = CountryField()
+    
     image_post = models.ImageField(upload_to=get_file_path)
 
     #Date fields for featured posts
