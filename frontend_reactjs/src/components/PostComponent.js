@@ -34,7 +34,15 @@ const PostContent = (props) => {
 				</div>
 				<div className="row row-content">
 					<div className="col-12 col-md-6">
+						
+						<h4>Genre:</h4>
+						
+						<p>{props.post.genres.map(e => e.name).join(' | ')}</p>
+						
+						<h4>Sinopsis:</h4>
 						<p>{props.post.description}</p>
+						
+						<h4>Description:</h4>
 						<p>{props.post.content}</p>
 					</div>
 				</div>

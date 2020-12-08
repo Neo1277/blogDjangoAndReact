@@ -29,11 +29,9 @@ const Home = (props) => {
 		//console.log(JSON.stringify(props.featured_posts  ) +   ' postcontent');
 		return(
 			<>
-				<div class="row row-content">
-					<div class="col">
-						<Slider dataposts={props.featuredposts.featuredposts} />
-					</div>
-				</div>
+			
+				<Slider dataposts={props.featuredposts.featuredposts} />
+			
 				<div class="container">
 					<h2 align="center">Categories</h2>
 						
