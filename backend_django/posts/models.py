@@ -73,11 +73,11 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    nicknane = models.CharField(max_length=50)
-    content = models.CharField(max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='commentps')
+    nickname = models.CharField(max_length=50)
+    content = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
-    answer_comment = models.ForeignKey('self', on_delete=models.CASCADE)
+    answer_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
 class Image(models.Model):
     #Field for one to many relation and set related name to serialize data with json

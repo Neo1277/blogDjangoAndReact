@@ -6,7 +6,7 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
  
-from posts.models import Genre, Post, Image
+from posts.models import Genre, Post, Image, Comment
 from posts.serializers import GenreSerializer, PostSerializer
 from rest_framework.decorators import api_view
 
@@ -46,6 +46,7 @@ def posts_list(request):
         try:        
             post = Post.objects.filter(status='1')
             image = Image.objects.filter(post=post)
+            comment = Comment.objects.filter(post=post)
 
         except Post.DoesNotExist or Image.DoesNotExist: 
             return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)

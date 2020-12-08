@@ -1,7 +1,7 @@
 #Source: https://bezkoder.com/django-crud-mysql-rest-framework/
 
 from rest_framework import serializers 
-from posts.models import Genre, Post, Image
+from posts.models import Genre, Post, Image, Comment
 
 """
 Serialize data to send it with json format
@@ -23,17 +23,27 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = ['id','image_post','title','description']
 
+#Serialize comments for nested array
+class CommentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = ('__all__')
+
 class PostSerializer(serializers.ModelSerializer):
     
     #Put genres data inside postsgen as a nested array
     genres = GenrePostSerializer(read_only=True,many=True)
 
-    #Put imges data inside postsgen as a nested array
+    #Put images data inside postsgen as a nested array
     imageps = ImageSerializer(read_only=True,many=True)
+
+    #Put comments data inside posts as a nested array
+    commentps = CommentSerializer(read_only=True,many=True)
 
     class Meta:
         model = Post
-        fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps']
+        fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps','commentps']
 
 #Parent array in the hierarchy of nested arrays json format
 class GenreSerializer(serializers.ModelSerializer):
