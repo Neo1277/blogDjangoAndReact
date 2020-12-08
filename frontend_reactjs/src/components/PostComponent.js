@@ -36,7 +36,9 @@ const PostContent = (props) => {
 					<div className="col-12 col-md-6">
 						
 						<h4>Genre:</h4>
-						
+						{/**
+						 * Source: https://stackoverflow.com/a/50287386/9655579
+						 */}
 						<p>{props.post.genres.map(e => e.name).join(' | ')}</p>
 						
 						<h4>Sinopsis:</h4>
