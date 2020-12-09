@@ -1,4 +1,4 @@
-#Source: https://bezkoder.com/django-crud-mysql-rest-framework/
+#Source (tutorial): https://bezkoder.com/django-crud-mysql-rest-framework/
 
 from rest_framework import serializers 
 from posts.models import Genre, Post, Image, Comment

@@ -1,4 +1,4 @@
-#Source: https://bezkoder.com/django-crud-mysql-rest-framework/
+#Source (tutorial): https://bezkoder.com/django-crud-mysql-rest-framework/
 
 from django.shortcuts import render
 
