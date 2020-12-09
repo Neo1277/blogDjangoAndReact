@@ -5,6 +5,7 @@ import http from "../shared/http-common";
 
 //Set end points for each request
 class PostDataService {
+  
   getAllGenres() {
     return http.get("/genres");
   }
@@ -15,6 +16,10 @@ class PostDataService {
 
   getFeaturedPosts() {
     return http.get("/featured_posts");
+  }
+
+  saveComment(data) {
+    return http.post("/comments", data);
   }
 
 }

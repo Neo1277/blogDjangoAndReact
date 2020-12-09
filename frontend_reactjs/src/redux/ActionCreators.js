@@ -112,3 +112,32 @@ export const addFeaturedPosts = (featuredposts) => ({
   type: ActionTypes.ADD_FEATUREDPOSTS,
   payload: featuredposts
 });
+
+/**
+ * Send post request to save comment
+ */
+export const postComment = (post, nickname, content) => (dispatch) => {
+
+  const newComment = {
+    post: post,
+    nickname: nickname,
+    content: content
+  }
+  //console.log("comment value: "+ JSON.stringify(newComment))
+  return PostDataService.saveComment(newComment)
+  /*.then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })*/
+  .then(response => response.data)
+  .then(response => { console.log('Comment', response); alert('Thank you for your comment!\n'+JSON.stringify(response)); })
+  .catch(error =>  { console.log('comment', error.message); alert('Your comment could not be posted\nError: '+error.message); });
+};

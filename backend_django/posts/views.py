@@ -7,7 +7,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
  
 from posts.models import Genre, Post, Image, Comment
-from posts.serializers import GenreSerializer, PostSerializer
+from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer
 from rest_framework.decorators import api_view
 
 from datetime import datetime
@@ -85,3 +85,18 @@ def featured_posts_list(request):
         #Call class serializer for sending json data to frontend with Django REST API
         post_serializer = PostSerializer(post, many=True)
         return JsonResponse(post_serializer.data, safe=False)
+
+#Function for comments
+@api_view(['POST'])
+def comments(request):
+    if request.method == 'POST':
+        
+        """
+        Save comment
+        """
+        comment_data = JSONParser().parse(request)
+        comment_serializer = CommentSerializer(data=comment_data)
+        if comment_serializer.is_valid():
+            comment_serializer.save()
+            return JsonResponse(comment_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

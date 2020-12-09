@@ -1,7 +1,9 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { createForms } from 'react-redux-form';
 import { Genres } from './genres';
 import { Posts } from './posts';
 import { FeaturedPosts } from './featuredPosts';
+import { InitialFeedback } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -11,7 +13,10 @@ export const ConfigureStore = () => {
         combineReducers({
             genres: Genres,
             posts: Posts,
-            featuredposts: FeaturedPosts
+            featuredposts: FeaturedPosts,
+            ...createForms({
+                comment: InitialFeedback
+            })
         }),
         applyMiddleware(thunk, logger)
     );
