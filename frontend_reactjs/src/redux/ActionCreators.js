@@ -1,13 +1,13 @@
 import * as ActionTypes from './ActionTypes';
-import PostDataService from "../services/postservice";
+import { baseUrlApiRest, apiUrl } from '../shared/baseUrl';
 
 /* Request to Django Rest API and show error or proceed to dispatch the data  */
 export const fetchGenres = () => (dispatch) => {
 
     dispatch(genresLoading(true));
 
-    return PostDataService.getAllGenres()
-		/*.then(response => {
+    return fetch(baseUrlApiRest + apiUrl + 'genres')
+		.then(response => {
 		  if (response.ok) {
         return response;
       } else {
@@ -15,8 +15,8 @@ export const fetchGenres = () => (dispatch) => {
         error.response = response;
         throw error;
       }
-		})*/
-		.then(response => response.data)
+		})
+		.then(response => response.json())
     .then(genres => dispatch(addGenres(genres)))
     .catch(error => dispatch(genresFailed(error.message)));
 }
@@ -43,8 +43,8 @@ export const fetchPosts = () => (dispatch) => {
 
   dispatch(postsLoading(true));
 
-  return PostDataService.getAllPosts()
-  /*.then(response => {
+  return fetch(baseUrlApiRest + apiUrl + 'posts')
+  .then(response => {
     if (response.ok) {
       return response;
     } else {
@@ -52,8 +52,8 @@ export const fetchPosts = () => (dispatch) => {
       error.response = response;
       throw error;
     }
-  })*/
-  .then(response => response.data)
+  })
+  .then(response => response.json())
   .then(posts => dispatch(addPosts(posts)))
   .catch(error => dispatch(postsFailed(error.message)));
 }
@@ -81,8 +81,8 @@ export const fetchFeaturedPosts = () => (dispatch) => {
 
   dispatch(featuredpostsLoading(true));
 
-  return PostDataService.getFeaturedPosts()
-  /*.then(response => {
+  return fetch(baseUrlApiRest + apiUrl + 'featured_posts')
+  .then(response => {
     if (response.ok) {
       return response;
     } else {
@@ -90,8 +90,8 @@ export const fetchFeaturedPosts = () => (dispatch) => {
       error.response = response;
       throw error;
     }
-  })*/
-  .then(response => response.data)
+  })
+  .then(response => response.json())
   .then(featuredposts => dispatch(addFeaturedPosts(featuredposts)))
   .catch(error => dispatch(featuredpostsFailed(error.message)));
 }
@@ -124,8 +124,15 @@ export const postComment = (post, nickname, content) => (dispatch) => {
     content: content
   }
   //console.log("comment value: "+ JSON.stringify(newComment))
-  return PostDataService.saveComment(newComment)
-  /*.then(response => {
+  return fetch(baseUrlApiRest + apiUrl + 'comments', {
+    method: "POST",
+    body: JSON.stringify(newComment),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin"
+  })
+  .then(response => {
       if (response.ok) {
         return response;
       } else {
@@ -136,8 +143,8 @@ export const postComment = (post, nickname, content) => (dispatch) => {
     },
     error => {
           throw error;
-    })*/
-  .then(response => response.data)
+    })
+  .then(response => response.json())
   .then(response => { console.log('Comment', response); alert('Thank you for your comment!\n'+JSON.stringify(response)); })
   .catch(error =>  { console.log('comment', error.message); alert('Your comment could not be posted\nError: '+error.message); });
 };
