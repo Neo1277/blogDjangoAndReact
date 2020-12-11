@@ -3,6 +3,7 @@ import { createForms } from 'react-redux-form';
 import { Genres } from './genres';
 import { Posts } from './posts';
 import { FeaturedPosts } from './featuredPosts';
+import { Comments } from './comments';
 import { InitialFeedback } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -14,6 +15,7 @@ export const ConfigureStore = () => {
             genres: Genres,
             posts: Posts,
             featuredposts: FeaturedPosts,
+            comments: Comments,
             ...createForms({
                 comment: InitialFeedback
             })

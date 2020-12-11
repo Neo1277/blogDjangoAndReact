@@ -32,15 +32,14 @@ const Home = (props) => {
 			
 				<Slider dataposts={props.featuredposts.featuredposts} />
 			
-				<div class="container">
+				<div className="container">
 					<h2 align="center">Categories</h2>
 						
-					<div class="row row-content">
+					<div className="row row-content">
 
 						{props.genres.genres.map((field, i) => { 
-							
 							return(
-							<div className="col-12 col-md-4 m-20">
+							<div key={field._id} className="col-12 col-md-4 m-20">
 								<Card>
 									<Link to={`/genre/${field.slug}`} >
 										<CardImg top width="100%" src={baseUrlApiRest + field.image_genre} alt={field.name} />

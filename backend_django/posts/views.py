@@ -23,7 +23,6 @@ def genres_list(request):
         try:
             genre = Genre.objects.filter(show_menu_list='YES')
             post = Post.objects.filter(status='1', genres=genre)
-            image = Image.objects.filter(post=post)
 
         except Genre.DoesNotExist or Post.DoesNotExist or image.DoesNotExist: 
             return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
@@ -46,7 +45,6 @@ def posts_list(request):
         try:        
             post = Post.objects.filter(status='1')
             image = Image.objects.filter(post=post)
-            comment = Comment.objects.filter(post=post)
 
         except Post.DoesNotExist or Image.DoesNotExist: 
             return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
@@ -87,9 +85,25 @@ def featured_posts_list(request):
         return JsonResponse(post_serializer.data, safe=False)
 
 #Function for comments
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def comments(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
+        
+        """
+        Querys with more than one row to serialize data
+        """
+
+        try:
+            #Get all comments
+            comment = Comment.objects.all()
+            
+        except Comment.DoesNotExist: 
+            return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
+        
+        #Call class serializer for sending json data to frontend with Django REST API
+        comment_serializer = CommentSerializer(comment, many=True)
+        return JsonResponse(comment_serializer.data, safe=False)    
+    elif request.method == 'POST':
         
         """
         Save comment

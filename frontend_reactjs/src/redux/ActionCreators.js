@@ -1,7 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrlApiRest, apiUrl } from '../shared/baseUrl';
 
-/* Request to Django Rest API and show error or proceed to dispatch the data  */
+/* Request to Django Rest framework and show error or proceed to dispatch the data  */
 export const fetchGenres = () => (dispatch) => {
 
     dispatch(genresLoading(true));
@@ -113,6 +113,49 @@ export const addFeaturedPosts = (featuredposts) => ({
   payload: featuredposts
 });
 
+/* Request to Django Rest framework and show error or proceed to dispatch the data  */
+export const fetchComments = () => (dispatch) => {
+
+  dispatch(commentsLoading(true));
+
+  return fetch(baseUrlApiRest + apiUrl + 'comments')
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  })
+  .then(response => response.json())
+  .then(comments => dispatch(addComments(comments)))
+  .catch(error => dispatch(commentsFailed(error.message)));
+}
+
+/* Call action type from comment reducer */
+export const commentsLoading = () => ({
+  type: ActionTypes.COMMENTS_LOADING
+});
+
+/* Call action type from comment reducer */
+export const commentsFailed = (errmess) => ({
+  type: ActionTypes.COMMENTS_FAILED,
+  payload: errmess
+});
+
+/* Call action type from comment reducer to add all comments */
+export const addComments = (comments) => ({
+  type: ActionTypes.ADD_COMMENTS,
+  payload: comments
+});
+
+/* Call action type from comment reducer to add one comment */
+export const addComment = (comment) => ({
+  type: ActionTypes.ADD_COMMENT,
+  payload: comment
+});
+
 /**
  * Send post request to save comment
  */
@@ -145,6 +188,7 @@ export const postComment = (post, nickname, content) => (dispatch) => {
           throw error;
     })
   .then(response => response.json())
-  .then(response => { console.log('Comment', response); alert('Thank you for your comment!\n'+JSON.stringify(response)); })
-  .catch(error =>  { console.log('comment', error.message); alert('Your comment could not be posted\nError: '+error.message); });
+  .then(response => dispatch(addComment(response)))
+  .then(response => { console.log('Comment', response); /*alert('Thank you for your comment!\n'+JSON.stringify(response));*/ })
+  .catch(error =>  { console.log('comment', error.message); /*alert('Your comment could not be posted\nError: '+error.message);*/ });
 };

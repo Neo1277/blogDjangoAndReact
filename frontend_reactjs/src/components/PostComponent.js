@@ -33,7 +33,7 @@ class Comment extends Component {
      */
     handleSubmit(values){
         console.log("Current State is: "+ JSON.stringify(this.props.postId + ", " +values))
-        alert("Current State is: "+ JSON.stringify(this.props.postId + ", " +values));
+        //alert("Current State is: "+ JSON.stringify(this.props.postId + ", " +values));
         this.props.postComment(this.props.postId, values.nickname, values.comment)
         this.props.resetCommentForm();
     }
@@ -161,7 +161,7 @@ const PostContent = (props) => {
         );
     }
 	else{ 
-		//console.log(JSON.stringify(props.post  ) +   ' postcontent');
+		console.log(JSON.stringify(props  ) +   ' postcontent');
 		return(
 
 
@@ -189,8 +189,8 @@ const PostContent = (props) => {
 						<p>{props.post.content}</p>
 					</div>
 				</div>
-				<div class="row row-content">
-					<div class="col">
+				<div className="row row-content">
+					<div className="col">
 						<Slider dataposts={props.post.imageps} />
 					</div>
 				</div>
@@ -202,7 +202,7 @@ const PostContent = (props) => {
                         <Comment postId={props.post.id} resetCommentForm={props.resetCommentForm} postComment={props.postComment} />
                     </div>
                     <div className="col-12">
-                        <RenderComments comments={props.post.commentps} />
+                        <RenderComments comments={props.comments.filter((comment) => comment.post === props.post.id)} />
                     </div>
                 </div>				
 			</div>

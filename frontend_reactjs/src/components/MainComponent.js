@@ -6,7 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchGenres, fetchPosts, fetchFeaturedPosts, postComment } from '../redux/ActionCreators';
+import { fetchGenres, fetchPosts, fetchFeaturedPosts, fetchComments, postComment } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 /* Set data obtain from json-server with redux to the Cpmponent's props */
@@ -14,7 +14,8 @@ const mapStateToProps = state => {
   return{
     genres: state.genres,
     posts: state.posts,
-    featuredposts: state.featuredposts
+    featuredposts: state.featuredposts,
+    comments: state.comments
   }
 }
 
@@ -23,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchGenres: () => { dispatch(fetchGenres())},
   fetchPosts: () => { dispatch(fetchPosts())},
   fetchFeaturedPosts: () => { dispatch(fetchFeaturedPosts())},
+  fetchComments: () => { dispatch(fetchComments())},
   resetCommentForm: () => { dispatch(actions.reset('comment'))},
   postComment: (post, nickname, content) => dispatch(postComment(post, nickname, content)),
 });
@@ -35,11 +37,11 @@ class Main extends Component {
     this.props.fetchGenres();
     this.props.fetchPosts();
     this.props.fetchFeaturedPosts();
+    this.props.fetchComments();
   }
 
   render(){
 
-    
     //This calls GenreContent and pass it all the properties
     const GenreWithSlug = ({match}) => {
       return(
@@ -52,11 +54,14 @@ class Main extends Component {
     
     //This calls PostContent and pass it all the properties
     const PostWithSlug = ({match}) => {
-      
+      //console.log("comment value: "+ JSON.stringify(this.props.comments.comments+ ' Comments props'))
       return(
         <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
-          postisLoading={this.props.genres.isLoading}
-          posterrMess={this.props.genres.errMess}
+          postisLoading={this.props.posts.isLoading}
+          posterrMess={this.props.posts.errMess}
+          comments={this.props.comments.comments}
+          commentsisLoading={this.props.comments.isLoading}
+          commentserrMess={this.props.comments.errMess}
           resetCommentForm={this.props.resetCommentForm} 
           postComment={this.props.postComment} 
         />

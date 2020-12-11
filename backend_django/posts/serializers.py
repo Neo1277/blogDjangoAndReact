@@ -39,11 +39,11 @@ class PostSerializer(serializers.ModelSerializer):
     imageps = ImageSerializer(read_only=True,many=True)
 
     #Put comments data inside posts as a nested array
-    commentps = CommentSerializer(read_only=True,many=True)
+    #commentps = CommentSerializer(read_only=True,many=True)
 
     class Meta:
         model = Post
-        fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps','commentps']
+        fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps']
 
 #Parent array in the hierarchy of nested arrays json format
 class GenreSerializer(serializers.ModelSerializer):
