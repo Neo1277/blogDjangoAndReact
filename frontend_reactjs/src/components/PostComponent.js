@@ -126,14 +126,14 @@ function RenderComments({comments}){
                         return (
                             <div key={comment.id} className="col-12 mt-5">
                                 <Media tag="li">
-                                <Media left middle>
-                                    <Media object src="assets/images/blank-profile-picture.png" alt={comment.nickname} />
-                                </Media>
-                                <Media body className="ml-5">
-                                    <Media heading>{comment.nickname}</Media>
-                                    <p>{comment.datetime}</p>
-                                    <p>{comment.content}</p>
-                                </Media>
+                                    <Media left middle>
+                                        <Media className="commentimg" object src="/assets/images/blank-profile-picture.png" alt={comment.nickname} />
+                                    </Media>
+                                    <Media body className="ml-5">
+                                        <Media heading>{comment.nickname}</Media>
+                                        <p>{comment.content}</p>
+                                        <p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(new Date(Date.parse(comment.datetime)))}</p>
+                                    </Media>
                                 </Media>
                             </div>
                         );
@@ -174,7 +174,7 @@ const PostContent = (props) => {
 					</div>                
 				</div>
 				<div className="row row-content">
-					<div className="col-12 col-md-6">
+					<div className="col-12">
 						
 						<h4>Genre:</h4>
 						{/**

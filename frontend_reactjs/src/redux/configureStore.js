@@ -4,7 +4,7 @@ import { Genres } from './genres';
 import { Posts } from './posts';
 import { FeaturedPosts } from './featuredPosts';
 import { Comments } from './comments';
-import { InitialFeedback } from './forms';
+import { InitialComment } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -17,7 +17,7 @@ export const ConfigureStore = () => {
             featuredposts: FeaturedPosts,
             comments: Comments,
             ...createForms({
-                comment: InitialFeedback
+                comment: InitialComment
             })
         }),
         applyMiddleware(thunk, logger)

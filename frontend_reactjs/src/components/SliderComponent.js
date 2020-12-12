@@ -12,6 +12,26 @@ import {
 } from 'reactstrap';
 
 import { baseUrlApiRest } from '../shared/baseUrl';
+import { Link } from "react-router-dom";
+
+/**
+ * Arrow function Image
+ * if item has a slug it returns an image with a link to the post
+ * else it just returns the image (Slider of images within a post)
+ */
+const Image = (props) => {
+  if (props.item.slug) {
+    return (
+      <Link to={`/post/${props.item.slug}`} >
+        <img src={baseUrlApiRest + props.item.image_post} alt={props.item.title} />
+      </Link>
+    );
+  }else{
+    return (
+      <img src={baseUrlApiRest + props.item.image_post} alt={props.item.title} />
+    );
+  }
+}
 
 /**
  * Arrow function uses images, title from props (featured posts)
@@ -43,9 +63,9 @@ const Slider = (props) => {
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={baseUrlApiRest + item.image_post}
+        key={item.id}
       >
-        <img src={baseUrlApiRest + item.image_post} alt={item.title} />
+        <Image item={item} />
         <CarouselCaption captionText={item.description} captionHeader={item.title} />
       </CarouselItem>
     );

@@ -80,7 +80,7 @@ class Main extends Component {
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} />} />
               <Route path="/genre/:slug" component={GenreWithSlug} />
-              <Route path="/genres/:sluggenre/:slugpost" component={PostWithSlug} />
+              <Route path="/post/:slugpost" component={PostWithSlug} />
               <Redirect to="/home" />
           </Switch>
         <Footer />

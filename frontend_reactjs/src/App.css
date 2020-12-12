@@ -105,6 +105,11 @@ address{
   background: #512DA8; 
 }*/
 
+.commentimg{
+  height: 100px;
+  width: 100px; 
+}
+
 .carousel .carousel-item {
   height: 500px; 
 }
