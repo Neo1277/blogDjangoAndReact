@@ -31,7 +31,7 @@ const Home = (props) => {
 			<>
 			
 				<Slider dataposts={props.featuredposts.featuredposts} />
-			
+				<br />
 				<div className="container">
 					<h2 align="center">Categories</h2>
 						

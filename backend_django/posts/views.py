@@ -19,6 +19,7 @@ def genres_list(request):
         
         """
         Querys with more than one row to serialize data
+        Populate genres and posts nested
         """
         try:
             genre = Genre.objects.filter(show_menu_list='YES')
@@ -40,6 +41,7 @@ def posts_list(request):
         
         """
         Querys with more than one row to serialize data
+        Populate posts and images nested
         """
 
         try:        
@@ -61,6 +63,7 @@ def featured_posts_list(request):
         
         """
         Querys with more than one row to serialize data
+        Populate posts and images nested
         Sources:
 
         https://stackoverflow.com/a/48264548/9655579
