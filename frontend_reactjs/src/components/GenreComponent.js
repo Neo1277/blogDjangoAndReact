@@ -27,6 +27,7 @@ const GenreContent = (props) => {
 		 */
 		return(
 			<div className="container">
+				<br />
 				<h2 align="center">Posts</h2>
 					
 				<div className="row row-content">
@@ -37,7 +38,7 @@ const GenreContent = (props) => {
 						<div key={field._id} className="col-12 col-md-4 m-20">
 							<Card>
 								<Link to={`/post/${field.slug}`} >
-									<CardImg top width="100%" src={baseUrlApiRest + field.image_post} alt={field.title} />
+									<CardImg className="postImage" src={baseUrlApiRest + field.image_post} alt={field.title} />
 								</Link>
 								<CardBody>
 									<CardTitle>{field.title} </CardTitle>

@@ -17,7 +17,7 @@
   border-bottom: 1px ridge;
   min-height:400px;
   color: #800080;
-  font-size:80%;
+  
 }
 
 .footer{
@@ -110,10 +110,16 @@ address{
   width: 100px; 
 }
 
-.carousel .carousel-item {
-  height: 500px; 
-}
 
+.carousel .carousel-item {
+  /*height: 500px; */
+  height: 91vh;
+}
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
 .carousel .carousel-item img {
   position: absolute;
   top: 0;
@@ -121,4 +127,16 @@ address{
   /*min-height: 300px;*/
   height: 100%; 
   width: 100%; 
+}
+.genreImage{
+  width: 230px;
+  height: 310px;
+}
+
+.cardGroup{
+  align-items: center;
+}
+
+.postImage{
+  height: 310px;
 }
