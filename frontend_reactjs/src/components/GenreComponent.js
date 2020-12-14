@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Loading } from './LoadingComponent';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { 
+	Card, 
+	CardImg, 
+	CardText, 
+	CardBody, 
+	CardTitle,
+	Breadcrumb, 
+	BreadcrumbItem 
+} from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 
 /**
@@ -28,6 +36,14 @@ const GenreContent = (props) => {
 		return(
 			<div className="container">
 				<br />
+				<div className="row">
+					<div className="col">
+						<Breadcrumb>
+							<BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+							<BreadcrumbItem active>{props.genre.slug}</BreadcrumbItem>
+						</Breadcrumb>
+					</div>
+				</div>				
 				<h2 align="center">Posts</h2>
 					
 				<div className="row row-content">
@@ -35,7 +51,7 @@ const GenreContent = (props) => {
 					{props.genre.postsgen.map((field, i) => { 
 						
 						return(
-						<div key={field._id} className="col-12 col-md-3 m-20">
+						<div key={field._id} className="col-12 col-md-4 m-20">
 							<Card>
 								<Link to={`/post/${field.slug}`} >
 									<CardImg className="postImage" src={baseUrlApiRest + field.image_post} alt={field.title} />

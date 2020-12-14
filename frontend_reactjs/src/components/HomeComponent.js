@@ -10,7 +10,9 @@ import {
 	CardGroup,
 	Nav, 
 	NavItem, 
-	NavLink
+	NavLink, 
+	Breadcrumb, 
+	BreadcrumbItem
 } from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 import Slider from './SliderComponent';
@@ -44,9 +46,17 @@ const Home = (props) => {
 				<Slider dataposts={props.featuredposts.featuredposts} />
 				<br />
 				<div className="container">
+
 					{/*<h2 align="center">Categories</h2>*/}
-						
+					<div className="row">
+						<div className="col">
+							<Breadcrumb>
+								<BreadcrumbItem active>Home</BreadcrumbItem>
+							</Breadcrumb>
+						</div>
+					</div>
 					<div className="row row-content">
+						
 						{/*props.genres.genres.map((field, i) => { 
 							return(
 							<div key={field._id} className="col-12 col-md-4 m-100">

@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import { Link } from "react-router-dom";
 import { 
     Media, 
     Button, 
     Label, 
     Col, 
-    Row 
+    Row, 
+	Breadcrumb, 
+	BreadcrumbItem 
 } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { baseUrlApiRest } from '../shared/baseUrl';
@@ -67,8 +70,8 @@ class Comment extends Component {
                                             show="touched" 
                                             messages={{
                                                 required: 'Required',
-                                                minLength: 'Must be greater than 2 characters',
-                                                maxLength: 'Must be 15 characters or less'
+                                                minLength: ' Must be greater than 2 characters',
+                                                maxLength: ' Must be 15 characters or less'
                                             }}
                                           />
                                 </Col>
@@ -90,8 +93,7 @@ class Comment extends Component {
                                         show="touched" 
                                         messages={{
                                             required: 'Required',
-                                            minLength: 'Must be greater than 2 characters',
-                                            maxLength: 'Must be 15 characters or less'
+                                            minLength: ' Must be greater than 2 characters'
                                         }}
                                         />
                                 </Col>
@@ -166,9 +168,18 @@ const PostContent = (props) => {
 
 
 			<div className="container">
-				<div className="row">
+                <br />
+                <div className="row">
+                    <div className="col">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.post.slug}</BreadcrumbItem>
+                        </Breadcrumb>
+                    </div>
+                </div>			
+				<div className="row row-content">
 					<div className="col-12">
-						<h3>{props.post.title}</h3>
+						<h3 align="center">{props.post.title}</h3>
 						<hr />
 						<img top width="100%" src={baseUrlApiRest + props.post.image_post} alt={props.post.title} />
 					</div>                
@@ -189,7 +200,7 @@ const PostContent = (props) => {
 						<p>{props.post.content}</p>
 					</div>
 				</div>
-				<div className="row row-content">
+				<div className="row">
 					<div className="col">
 						<Slider dataposts={props.post.imageps} />
 					</div>
