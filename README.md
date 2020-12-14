@@ -15,7 +15,7 @@ This web application consists on a basic personal blog for making posts, creatin
 ## Installation ##
 *   First create a MySQL database named "posts" 
 *   Create a virtual enviroment for the django dependencies [Link official docummentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
-*   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the command using the file requirements.txt wich has the dependencies
+*   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the command using the file requirements.txt which has the dependencies
 	* ### `pip install -r requirements.txt`
 *   For creating the tables on the database, on the backend_django folder run the following commands (python or python3 depends on your configuration when the variable name on the system was set)
 	* ### `python manage.py makemigrations`
