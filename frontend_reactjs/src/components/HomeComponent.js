@@ -1,7 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Loading } from './LoadingComponent';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardGroup  } from 'reactstrap';
+import { 
+	Card, 
+	CardImg, 
+	CardText, 
+	CardBody, 
+	CardTitle, 
+	CardGroup,
+	Nav, 
+	NavItem, 
+	NavLink
+} from 'reactstrap';
 import { baseUrlApiRest } from '../shared/baseUrl';
 import Slider from './SliderComponent';
 import { FadeTransform } from 'react-animation-components';
@@ -34,7 +44,7 @@ const Home = (props) => {
 				<Slider dataposts={props.featuredposts.featuredposts} />
 				<br />
 				<div className="container">
-					<h2 align="center">Categories</h2>
+					{/*<h2 align="center">Categories</h2>*/}
 						
 					<div className="row row-content">
 						{/*props.genres.genres.map((field, i) => { 
@@ -61,12 +71,27 @@ const Home = (props) => {
 							);
 							
 						}) */}
-
-					
-
-						{
+						<div className="col-2">
+							<h4>Categories</h4>
+									{props.genres.genres.map((field, i) => { 
+										return(
+											<Nav vertical>
+												<NavItem>
+													{/*<NavLink href={`/genre/${field.slug}`}>{field.name}</NavLink>*/}
+													<NavLink tag={Link} to={`/genre/${field.slug}`}>{field.name}</NavLink>
+												</NavItem>
+											</Nav>
+										);
+										
+									}) }
+						</div>
+						<div className="col-10">
+							<h4 align="center">Latest post</h4>
+							
+							<div className="row row-content">
+						{/*
 							 
-								<CardGroup className="cardGroup">
+								<CardGroup>
 									{props.genres.genres.map((field, i) => { 
 										return(
 										
@@ -89,8 +114,35 @@ const Home = (props) => {
 										
 									}) }
 								</CardGroup>
-							
-						}
+							*/
+
+								props.posts.posts.map((field, i) => { 
+									return(
+									
+										<div key={field._id} className="col-12 col-md-6 m-100">
+											<FadeTransform in 
+												transformProps={{
+													exitTransform: 'scale(0.5) translateY(-50%)'
+												}}>
+													<Card>
+														<Link to={`/post/${field.slug}`} >
+															<CardImg className="postImage" src={baseUrlApiRest + field.image_post} alt={field.title} />
+														</Link>
+														<CardBody>
+															<CardTitle>{field.title} </CardTitle>
+															<CardText>{field.description}</CardText>
+														</CardBody>
+														
+													</Card>		
+										
+											</FadeTransform>
+												</div>		
+																		
+									);
+									
+								}) 
+						}</div>
+						</div>
 					</div>			
 				</div>
 			</>

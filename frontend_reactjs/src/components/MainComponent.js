@@ -78,7 +78,7 @@ class Main extends Component {
       <div>
         <Header />
             <Switch>
-              <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} />} />
+              <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
               <Route path="/genre/:slug" component={GenreWithSlug} />
               <Route path="/post/:slugpost" component={PostWithSlug} />
               <Redirect to="/home" />

@@ -42,10 +42,13 @@ def posts_list(request):
         """
         Querys with more than one row to serialize data
         Populate posts and images nested
+        order posts descending order
+        Source official documentation:
+        https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.order_by
         """
 
         try:        
-            post = Post.objects.filter(status='1')
+            post = Post.objects.filter(status='1').order_by('-created_on')
             image = Image.objects.filter(post=post)
 
         except Post.DoesNotExist or Image.DoesNotExist: 
