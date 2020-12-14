@@ -4,14 +4,16 @@ from django.contrib.auth.models import User
 import uuid
 import os
 
-#Generate unique name for each image in the folder posts
+"""
+Generate unique name for each image in the folder posts
+Source: https://stackoverflow.com/a/2677474/9655579
+"""
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join('posts', filename)
 
 #Source: Model field reference https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField
-
 class Genre(models.Model):
 
     #Text that will be shown in Django Admin fields for this model

@@ -139,8 +139,3 @@ dmypy.json
 cython_debug/
 
 # Media files
-# exclude everything
-media/*
-
-# exception to the rule
-!media/.gitkeep 

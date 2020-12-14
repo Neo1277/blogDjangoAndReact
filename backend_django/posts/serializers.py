@@ -1,5 +1,3 @@
-#Source (tutorial): https://bezkoder.com/django-crud-mysql-rest-framework/
-
 from rest_framework import serializers 
 from posts.models import Genre, Post, Image, Comment
 
@@ -38,14 +36,11 @@ class PostSerializer(serializers.ModelSerializer):
     #Put images data inside postsgen as a nested array
     imageps = ImageSerializer(read_only=True,many=True)
 
-    #Put comments data inside posts as a nested array
-    #commentps = CommentSerializer(read_only=True,many=True)
-
     class Meta:
         model = Post
         fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps']
 
-#Parent array in the hierarchy of nested arrays json format
+#Parent array nested objects genres
 class GenreSerializer(serializers.ModelSerializer):
     
     #Put post data inside genres as a nested array
