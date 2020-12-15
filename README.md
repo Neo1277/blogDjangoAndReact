@@ -6,8 +6,8 @@ This web application consists on a basic personal blog for making posts, creatin
 ![Example](https://user-images.githubusercontent.com/59356298/102147219-66e05280-3e38-11eb-8f5f-f6e9d18795a1.png)
 
 ## Programming languages (frameworks, libraries) ##
-*   Django (Django rest framework, Django models, Django admin, serialization)
-*   Reactjs (HTML, CSS, reactstrap, react redux, react route)
+*   Django (Django rest framework, Django models, Django admin, JSON, serialization)
+*   Reactjs (HTML, CSS, reactstrap, react redux, react route, JSON)
 
 ## Database ##
 *   MySQL
