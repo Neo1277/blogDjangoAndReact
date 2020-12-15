@@ -179,7 +179,7 @@ const PostContent = (props) => {
                 </div>			
 				<div className="row row-content">
 					<div className="col-12">
-						<h3 align="center">{props.post.title}</h3>
+						<h2 align="center">{props.post.title}</h2>
 						<hr />
 						<img top width="100%" src={baseUrlApiRest + props.post.image_post} alt={props.post.title} />
 					</div>                
@@ -187,22 +187,32 @@ const PostContent = (props) => {
 				<div className="row row-content">
 					<div className="col-12">
 						
-						<h4>Genre:</h4>
+                        <h5>Created on:</h5>
+						<p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(new Date(Date.parse(props.post.created_on)))}</p>
+                        
+                        <h5>Genre:</h5>
 						{/**
 						 * Source: https://stackoverflow.com/a/50287386/9655579
 						 */}
 						<p>{props.post.genres.map(e => e.name).join(' | ')}</p>
 						
-						<h4>Sinopsis:</h4>
+                        <h5>Sinopsis:</h5>
 						<p>{props.post.description}</p>
 						
-						<h4>Description:</h4>
+						<h5>Description:</h5>
 						<p>{props.post.content}</p>
 					</div>
 				</div>
 				<div className="row">
 					<div className="col">
 						<Slider dataposts={props.post.imageps} />
+					</div>
+				</div>
+				<div className="row">
+					<div className="col">
+                        <br />
+						<h5>Updated on:</h5>
+						<p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(new Date(Date.parse(props.post.updated_on)))}</p>
 					</div>
 				</div>
                 <div className="row row-content">

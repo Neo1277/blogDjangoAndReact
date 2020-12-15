@@ -1,5 +1,5 @@
 /**
- * Source: https://reactstrap.github.io/components/carousel/
+ * Source official documentation: https://reactstrap.github.io/components/carousel/
  */
 
 import React, { useState } from 'react';

@@ -20,6 +20,7 @@ This web application consists on a basic personal blog for making posts, creatin
 *   For creating the tables on the database, on the backend_django folder run the following commands (python or python3 depends on your configuration when the variable name on the system was set)
 	* ### `python manage.py makemigrations`
 	* ### `python manage.py migrate`
+*   For uploading the content using Django admin, a super user has to be created, see official documentation [Link official docummentation Django admin](https://docs.djangoproject.com/en/3.1/intro/tutorial02/#introducing-the-django-admin "djangoenviroment")
 *   For installing the react application, go to the frontend_reactjs folder and run
 	* ### `yarn install`
 
