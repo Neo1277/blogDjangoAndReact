@@ -13,7 +13,6 @@ import {
 	Breadcrumb, 
 	BreadcrumbItem
 } from 'reactstrap';
-import { baseUrlApiRest } from '../shared/baseUrl';
 import Slider from './SliderComponent';
 import { FadeTransform } from 'react-animation-components';
 

@@ -5,14 +5,14 @@ from posts.models import Genre, Post, Image, Comment
 Serialize data to send it with json format
 """
 
-#Serialize genres for nested array
+#Serialize genres nested array
 class GenrePostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Genre
         fields = ('__all__')
 
-#Serialize Image for nested array
+#Serialize Image nested array
 class ImageSerializer(serializers.ModelSerializer):
     #Set alias for field. Source: https://stackoverflow.com/a/43492545/9655579
     title = serializers.CharField(source='name')
@@ -21,7 +21,7 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = ['id','image_post','title','description']
 
-#Serialize comments for nested array
+#Serialize comments
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:

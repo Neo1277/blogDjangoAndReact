@@ -11,7 +11,6 @@ import {
   CarouselCaption
 } from 'reactstrap';
 
-import { baseUrlApiRest } from '../shared/baseUrl';
 import { Link } from "react-router-dom";
 
 /**

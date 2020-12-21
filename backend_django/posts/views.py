@@ -1,17 +1,15 @@
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
-from rest_framework.parsers import JSONParser 
-from rest_framework import status
  
 from posts.models import Genre, Post, Image, Comment
+
 from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer
-from rest_framework.decorators import api_view
 
 from datetime import datetime
 
-from rest_framework.views import APIView
-from rest_framework import generics
+from rest_framework.parsers import JSONParser
+from rest_framework import status, generics
 
 # Class-based Views
 # https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views
@@ -21,7 +19,7 @@ Applying inheritance to classes
 """
 # Generic class-based views for genres list requests
 
-class GenresListView(generics.ListCreateAPIView):
+class GenresListView(generics.ListAPIView):
     serializer_class = GenreSerializer
 
     def get_queryset(self):
@@ -36,7 +34,7 @@ class GenresListView(generics.ListCreateAPIView):
 
 # Generic class-based views for posts list requests
 
-class PostsListView(generics.ListCreateAPIView):
+class PostsListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
     def get_queryset(self):
@@ -50,7 +48,7 @@ class PostsListView(generics.ListCreateAPIView):
 
 
 # Generic class-based views forFeatured  posts list requests
-class FeaturedPostsListView(generics.ListCreateAPIView):
+class FeaturedPostsListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
     def get_queryset(self):

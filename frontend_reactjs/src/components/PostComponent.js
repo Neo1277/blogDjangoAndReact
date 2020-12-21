@@ -10,7 +10,6 @@ import {
 	BreadcrumbItem 
 } from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import { baseUrlApiRest } from '../shared/baseUrl';
 import Slider from './SliderComponent';
 import { Control, Form, Errors } from 'react-redux-form';
 

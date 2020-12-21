@@ -10,7 +10,6 @@ import {
 	Breadcrumb, 
 	BreadcrumbItem 
 } from 'reactstrap';
-import { baseUrlApiRest } from '../shared/baseUrl';
 
 /**
  * Show status if the page is Loading shows spinner else shows error or the page content

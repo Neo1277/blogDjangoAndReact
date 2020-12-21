@@ -14,14 +14,14 @@ This web application consists on a basic personal blog for making posts, creatin
 
 ## Installation ##
 *   First create a MySQL database named "posts" 
-*   Create a virtual enviroment for the django dependencies [Link official docummentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
-*   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the command using the file requirements.txt which has the dependencies
+*   Create a virtual enviroment for the django dependencies [Link official documentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
+*   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the following command using the requirements.txt file which has the dependencies
 	* ### `pip install -r requirements.txt`
-*   For creating the tables on the database, on the backend_django folder run the following commands (python or python3 depends on your configuration when the variable name on the system was set)
+*   To create the tables on the database, on the backend_django folder run the following commands (python or python3 depends on your configuration when the enviroment variable on the system was set up)
 	* ### `python manage.py makemigrations`
 	* ### `python manage.py migrate`
-*   For uploading the content using Django admin, a super user has to be created, see official documentation [Link official docummentation Django admin](https://docs.djangoproject.com/en/3.1/intro/tutorial02/#introducing-the-django-admin "djangoenviroment")
-*   For installing the react application, go to the frontend_reactjs folder and run
+*   To upload the content using Django admin, a super user has to be created, see official documentation [Link official documentation Django admin](https://docs.djangoproject.com/en/3.1/intro/tutorial02/#introducing-the-django-admin "djangoenviroment")
+*   To install the react application, go to the frontend_reactjs folder and run
 	* ### `yarn install`
 
 ## How to run it ##
