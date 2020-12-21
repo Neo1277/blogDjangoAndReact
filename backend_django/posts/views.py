@@ -10,11 +10,14 @@ from rest_framework.decorators import api_view
 
 from datetime import datetime
 
-#Function for genres list requests
-@api_view(['GET'])
-def genres_list(request):
-    if request.method == 'GET':
-        
+from rest_framework.views import APIView
+
+# Class-based Views
+# https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views
+
+# Generic class-based views for genres list requests
+class GenresListView(APIView):
+    def get(self, request):
         """
         Querys with more than one row to serialize data
         Populate genres and posts nested
@@ -23,7 +26,7 @@ def genres_list(request):
             genre = Genre.objects.filter(show_menu_list='YES')
             post = Post.objects.filter(status='1', genres=genre)
 
-        except Genre.DoesNotExist or Post.DoesNotExist or image.DoesNotExist: 
+        except Genre.DoesNotExist or Post.DoesNotExist: 
             return JsonResponse({'message': 'The request does not match the records'}, status=status.HTTP_404_NOT_FOUND)
         
         
@@ -31,12 +34,9 @@ def genres_list(request):
         genre_serializer = GenreSerializer(genre, many=True)
         return JsonResponse(genre_serializer.data, safe=False)
 
-
-#Function for posts list requests
-@api_view(['GET'])
-def posts_list(request):
-    if request.method == 'GET':
-        
+# Generic class-based views for posts list requests
+class PostsListView(APIView):
+    def get(self, request):
         """
         Querys with more than one row to serialize data
         Populate posts and images nested
@@ -57,11 +57,9 @@ def posts_list(request):
         post_serializer = PostSerializer(post, many=True)
         return JsonResponse(post_serializer.data, safe=False)
 
-#Function for featured posts requests
-@api_view(['GET'])
-def featured_posts_list(request):
-    if request.method == 'GET':
-        
+# Generic class-based views featured posts list requests
+class FeaturedPostsListView(APIView):
+    def get(self, request):
         """
         Querys with more than one row to serialize data
         Populate posts and images nested
@@ -88,11 +86,9 @@ def featured_posts_list(request):
         post_serializer = PostSerializer(post, many=True)
         return JsonResponse(post_serializer.data, safe=False)
 
-#Function for comments
-@api_view(['GET', 'POST'])
-def comments(request):
-    if request.method == 'GET':
-        
+# Generic class-based views for comments requests
+class CommentsView(APIView):
+    def get(self, request):
         """
         Querys with more than one row to serialize data
         """
@@ -107,14 +103,17 @@ def comments(request):
         #Call class serializer for sending json data to frontend with Django REST API
         comment_serializer = CommentSerializer(comment, many=True)
         return JsonResponse(comment_serializer.data, safe=False)    
-    elif request.method == 'POST':
-        
+
+    def post(self, request):
         """
         Save comment
+        
+        Link Separate permissions per methods:
+        https://stackoverflow.com/a/19784496/9655579
         """
         comment_data = JSONParser().parse(request)
         comment_serializer = CommentSerializer(data=comment_data)
         if comment_serializer.is_valid():
             comment_serializer.save()
             return JsonResponse(comment_serializer.data, status=status.HTTP_201_CREATED) 
-        return JsonResponse(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 

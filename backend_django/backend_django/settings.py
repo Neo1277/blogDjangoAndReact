@@ -121,6 +121,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Simple jwt authentication Django rest framework
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
