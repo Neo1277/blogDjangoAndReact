@@ -181,7 +181,7 @@ const PostContent = (props) => {
 					<div className="col-12">
 						<h2 align="center">{props.post.title}</h2>
 						<hr />
-						<img top width="100%" src={baseUrlApiRest + props.post.image_post} alt={props.post.title} />
+						<img top width="100%" src={props.post.image_post} alt={props.post.title} />
 					</div>                
 				</div>
 				<div className="row row-content">

@@ -54,7 +54,7 @@ const GenreContent = (props) => {
 						<div key={field._id} className="col-12 col-md-4 m-20">
 							<Card>
 								<Link to={`/post/${field.slug}`} >
-									<CardImg className="postImage" src={baseUrlApiRest + field.image_post} alt={field.title} />
+									<CardImg className="postImage" src={field.image_post} alt={field.title} />
 								</Link>
 								<CardBody>
 									<CardTitle>{field.title} </CardTitle>

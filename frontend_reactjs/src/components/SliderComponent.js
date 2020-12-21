@@ -23,12 +23,12 @@ const Image = (props) => {
   if (props.item.slug) {
     return (
       <Link to={`/post/${props.item.slug}`} >
-        <img src={baseUrlApiRest + props.item.image_post} alt={props.item.title} />
+        <img src={props.item.image_post} alt={props.item.title} />
       </Link>
     );
   }else{
     return (
-      <img src={baseUrlApiRest + props.item.image_post} alt={props.item.title} />
+      <img src={props.item.image_post} alt={props.item.title} />
     );
   }
 }

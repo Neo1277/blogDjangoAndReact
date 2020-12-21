@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { fetchGenres, fetchPosts, fetchFeaturedPosts, fetchComments, postComment } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
-/* Set data obtain from json-server with redux to the Cpmponent's props */
+/* Set data gotten from Django API with redux to the Cpmponent's props */
 const mapStateToProps = state => {
   return{
     genres: state.genres,

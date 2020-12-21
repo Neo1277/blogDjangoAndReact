@@ -56,30 +56,6 @@ const Home = (props) => {
 					</div>
 					<div className="row row-content">
 						
-						{/*props.genres.genres.map((field, i) => { 
-							return(
-							<div key={field._id} className="col-12 col-md-4 m-100">
-
-								<FadeTransform in 
-									transformProps={{
-										exitTransform: 'scale(0.5) translateY(-50%)'
-									}}>
-									<Card inverse style={{ backgroundColor: '#333' }}>
-										<Link to={`/genre/${field.slug}`} >
-											<CardImg className="genreImage" src={baseUrlApiRest + field.image_genre} alt={field.name} />
-										</Link>
-										<CardBody>
-											<CardTitle tag="h5">{field.name} </CardTitle>
-											<CardText>{field.description}</CardText>
-										</CardBody>
-									</Card>
-								
-								</FadeTransform>
-							</div>				
-					
-							);
-							
-						}) */}
 						<div className="col-2">
 							<h4>Categories</h4>
 									{props.genres.genres.map((field, i) => { 
@@ -98,33 +74,7 @@ const Home = (props) => {
 							<h4 align="center">Latest post</h4>
 							
 							<div className="row row-content">
-						{/*
-							 
-								<CardGroup>
-									{props.genres.genres.map((field, i) => { 
-										return(
-										
-											<FadeTransform in 
-												transformProps={{
-													exitTransform: 'scale(0.5) translateY(-50%)'
-												}}>
-												<Card inverse style={{ backgroundColor: '#333' }}>
-													<Link to={`/genre/${field.slug}`} >
-														<CardImg className="genreImage" src={baseUrlApiRest + field.image_genre} alt={field.name} />
-													</Link>
-													<CardBody>
-														<CardTitle tag="h5">{field.name} </CardTitle>
-													</CardBody>
-												</Card>
-											
-											</FadeTransform>	
-								
-										);
-										
-									}) }
-								</CardGroup>
-							*/
-
+						{
 								props.posts.posts.map((field, i) => { 
 									return(
 									
@@ -135,7 +85,7 @@ const Home = (props) => {
 												}}>
 													<Card>
 														<Link to={`/post/${field.slug}`} >
-															<CardImg className="postImage" src={baseUrlApiRest + field.image_post} alt={field.title} />
+															<CardImg className="postImage" src={field.image_post} alt={field.title} />
 														</Link>
 														<CardBody>
 															<CardTitle>{field.title} </CardTitle>
@@ -145,7 +95,7 @@ const Home = (props) => {
 													</Card>		
 										
 											</FadeTransform>
-												</div>		
+										</div>		
 																		
 									);
 									
