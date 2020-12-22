@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.http.response import JsonResponse
  
 from posts.models import Genre, Post, Image, Comment
@@ -68,19 +66,10 @@ class FeaturedPostsListView(generics.ListAPIView):
 
 class CommentsView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-
+    queryset = Comment.objects.all()
     """
     Save comment
     
     Link Separate permissions per methods:
     https://stackoverflow.com/a/19784496/9655579
     """
-
-    def get_queryset(self):
-        """
-        Querys with more than one row to serialize data
-        """
-        #Get all comments
-        comment = Comment.objects.all()
-        return comment
-

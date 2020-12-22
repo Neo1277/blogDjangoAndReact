@@ -70,14 +70,14 @@ const Home = (props) => {
 									}) }
 						</div>
 						<div className="col-10">
-							<h4 align="center">Latest post</h4>
+							<h4 align="center">Latest posts</h4>
 							
 							<div className="row row-content">
 						{
 								props.posts.posts.map((field, i) => { 
 									return(
 									
-										<div key={field._id} className="col-12 col-md-6 m-100">
+										<div key={field._id} className="col-12 col-md-4 m-20">
 											<FadeTransform in 
 												transformProps={{
 													exitTransform: 'scale(0.5) translateY(-50%)'

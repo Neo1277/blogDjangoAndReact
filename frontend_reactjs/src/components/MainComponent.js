@@ -6,7 +6,15 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchGenres, fetchPosts, fetchFeaturedPosts, fetchComments, postComment } from '../redux/ActionCreators';
+import { 
+  fetchGenres, 
+  fetchPosts, 
+  fetchFeaturedPosts, 
+  fetchComments, 
+  postComment, 
+  loginUser, 
+  logoutUser 
+} from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 /* Set data gotten from Django API with redux to the Cpmponent's props */
@@ -15,7 +23,8 @@ const mapStateToProps = state => {
     genres: state.genres,
     posts: state.posts,
     featuredposts: state.featuredposts,
-    comments: state.comments
+    comments: state.comments,
+    auth: state.auth
   }
 }
 
@@ -27,6 +36,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchComments: () => { dispatch(fetchComments())},
   resetCommentForm: () => { dispatch(actions.reset('comment'))},
   postComment: (post, nickname, content) => dispatch(postComment(post, nickname, content)),
+  loginUser: (creds) => dispatch(loginUser(creds)),
+  logoutUser: () => dispatch(logoutUser()),
 });
 
 
@@ -56,6 +67,8 @@ class Main extends Component {
     const PostWithSlug = ({match}) => {
       //console.log("comment value: "+ JSON.stringify(this.props.comments.comments+ ' Comments props'))
       return(
+        this.props.auth.isAuthenticated
+        ?
         <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
           postisLoading={this.props.posts.isLoading}
           posterrMess={this.props.posts.errMess}
@@ -64,7 +77,19 @@ class Main extends Component {
           commentserrMess={this.props.comments.errMess}
           resetCommentForm={this.props.resetCommentForm} 
           postComment={this.props.postComment} 
+          isAbleToMakeComments={true}
         />
+        :
+        <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
+          postisLoading={this.props.posts.isLoading}
+          posterrMess={this.props.posts.errMess}
+          comments={this.props.comments.comments}
+          commentsisLoading={this.props.comments.isLoading}
+          commentserrMess={this.props.comments.errMess}
+          resetCommentForm={this.props.resetCommentForm} 
+          postComment={this.props.postComment} 
+          isAbleToMakeComments={false}
+        />      
       );
     };
 
@@ -76,7 +101,11 @@ class Main extends Component {
 
     return (
       <div>
-        <Header />
+        <Header 
+          auth={this.props.auth} 
+          loginUser={this.props.loginUser} 
+          logoutUser={this.props.logoutUser} 
+        />
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
               <Route path="/genre/:slug" component={GenreWithSlug} />

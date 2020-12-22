@@ -76,7 +76,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='commentps')
-    nickname = models.CharField(max_length=50)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='commentus')
     content = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     answer_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
@@ -87,3 +87,6 @@ class Image(models.Model):
     image_post = models.ImageField(upload_to=get_file_path)
     name = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=200, null=True, blank=True)
+    
+    def __str__(self):
+        return self.post.title

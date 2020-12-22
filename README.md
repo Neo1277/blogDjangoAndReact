@@ -1,6 +1,6 @@
 # Django and React integration #
 
-This web application consists on a basic personal blog for making posts, creating categories, this also includes featured posts shown on slider, comments on each post and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
+This web application consists on a basic personal blog to make posts, to create categories, this also includes featured posts shown on slider, comments on each post and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
 
 ## Example ##
 ![Example](https://user-images.githubusercontent.com/59356298/102147219-66e05280-3e38-11eb-8f5f-f6e9d18795a1.png)
@@ -32,7 +32,7 @@ This web application consists on a basic personal blog for making posts, creatin
 
 ## Notes ##
 *   If different ports are being used, go to the settings.py file and change the port in the whitelist, or change the port in the baseUrl.js file, it depends on the configuration.
-*   This application is not using https yet, it uses http, when deploying the application, I suggest using https and a private key and a public key (SSL) for exchanging data between client and server for security.
+*   This application is not using https yet, it uses http, when deploying the application, I suggest using https, a private key and a public key (SSL) for exchanging data between client and server for security.
 
 ## Credits ##
 *   [Tutorial django rest framework](https://bezkoder.com/django-crud-mysql-rest-framework/ "djangorestframeworktutorial")

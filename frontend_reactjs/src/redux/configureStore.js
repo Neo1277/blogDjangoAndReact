@@ -7,6 +7,7 @@ import { Comments } from './comments';
 import { InitialComment } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { Auth } from './auth';
 
 /* Configure store for letting the data be there even if the page is reloaded */
 export const ConfigureStore = () => {
@@ -16,6 +17,7 @@ export const ConfigureStore = () => {
             posts: Posts,
             featuredposts: FeaturedPosts,
             comments: Comments,
+            auth: Auth,
             ...createForms({
                 comment: InitialComment
             })

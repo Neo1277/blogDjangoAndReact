@@ -219,7 +219,12 @@ const PostContent = (props) => {
                         <h2>Comments</h2>
                     </div>
                     <div className="col-12">
-                        <Comment postId={props.post.id} resetCommentForm={props.resetCommentForm} postComment={props.postComment} />
+                        {props.isAbleToMakeComments ?
+                            <Comment postId={props.post.id} resetCommentForm={props.resetCommentForm} postComment={props.postComment} />
+                            : 
+                            <h7>Only authenticated users are able to make comments on this post</h7>
+                        }
+                        
                     </div>
                     <div className="col-12">
                         <RenderComments comments={props.comments.filter((comment) => comment.post === props.post.id)} />
