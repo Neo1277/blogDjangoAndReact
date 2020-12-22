@@ -7,7 +7,7 @@ from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer
 from datetime import datetime
 
 from rest_framework.parsers import JSONParser
-from rest_framework import status, generics
+from rest_framework import status, generics, permissions
 
 # Class-based Views
 # https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views
@@ -65,6 +65,7 @@ class FeaturedPostsListView(generics.ListAPIView):
 
 
 class CommentsView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
     """

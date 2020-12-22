@@ -163,15 +163,16 @@ export const postComment = (post, nickname, content) => (dispatch) => {
 
   const newComment = {
     post: post,
-    nickname: nickname,
     content: content
   }
+  const bearer = 'Bearer ' + localStorage.getItem('token');
   //console.log("comment value: "+ JSON.stringify(newComment))
   return fetch(baseUrlApiRest + apiUrl + 'comments', {
     method: "POST",
     body: JSON.stringify(newComment),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'Authorization': bearer
     },
     credentials: "same-origin"
   })
