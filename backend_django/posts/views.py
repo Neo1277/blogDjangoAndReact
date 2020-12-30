@@ -23,31 +23,25 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 # Generic class-based views for genres list requests
-
 class GenresListView(generics.ListAPIView):
     serializer_class = GenreSerializer
 
-    def get_queryset(self):
-        """
-        Querys with more than one row to serialize data
-        Populate genres and posts nested
-        """
-        genre = Genre.objects.filter(show_menu_list='YES')
-        return genre
-
+    """
+    Querys with more than one row to serialize data
+    Populate genres and posts nested
+    """
+    queryset = Genre.objects.filter(show_menu_list='YES')
 
 # Generic class-based views for posts list requests
-
 class PostsListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
-    def get_queryset(self):
-        """
-        Querys with more than one row to serialize data
-        Populate posts and images nested
-        """
-        post = Post.objects.filter(status='1').order_by('-created_on')
-        return post
+    """
+    Querys with more than one row to serialize data
+    Populate posts and images nested
+    """
+    queryset = Post.objects.filter(status='1').order_by('-created_on')
+
 
 
 # Generic class-based views forFeatured  posts list requests
@@ -59,10 +53,10 @@ class FeaturedPostsListView(generics.ListAPIView):
         Querys with more than one row to serialize data
         Populate posts and images nested
         """
-            #Current date and time
+        # Current date and time
         current_date = datetime.now()
         
-        #Filter featured posts: current datetime between datetimes fields in the database
+        # Filter featured posts: current datetime between datetimes fields in the database
         post = Post.objects.filter(status='1', initial_featured_date__lte = current_date, end_featured_date__gte = current_date)
 
         return post
@@ -74,8 +68,7 @@ class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     """
     Save comment
-    
-    Link Separate permissions per methods:
-    https://stackoverflow.com/a/19784496/9655579
+    IsAuthenticatedOrReadOnly
+    https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
     """
 

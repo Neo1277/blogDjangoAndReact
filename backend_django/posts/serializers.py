@@ -56,7 +56,22 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id','title', 'slug','description','author','updated_on','genres','content','created_on','status','url_website','url_video','director','country','image_post','imageps']
+        fields = ['id',
+                  'title',
+                  'slug',
+                  'description',
+                  'author',
+                  'updated_on',
+                  'genres',
+                  'content',
+                  'created_on',
+                  'status',
+                  'url_website',
+                  'url_video',
+                  'director',
+                  'country',
+                  'image_post',
+                  'imageps']
 
 #Parent array nested objects genres
 class GenreSerializer(serializers.ModelSerializer):
@@ -66,4 +81,10 @@ class GenreSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Genre
-        fields = ['id','name', 'slug','description','show_menu_list','image_genre','postsgen']
+        fields = ['id',
+                  'name',
+                  'slug',
+                  'description',
+                  'show_menu_list',
+                  'image_genre',
+                  'postsgen']
