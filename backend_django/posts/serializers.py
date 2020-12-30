@@ -1,10 +1,36 @@
-from rest_framework import serializers 
+from rest_framework import serializers
+from django.contrib.auth.models import User
 from posts.models import Genre, Post, Image, Comment
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 """
-Serialize data to send it with json format
+Serializers to send or save data from models
 """
+
+class RegisterUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username','first_name','last_name','email','password']
+        write_only_fields = ('password',)
+
+    """
+    Validaations for user registration and set secure password
+    Source:
+    https://stackoverflow.com/a/29867704/9655579
+    """
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            email=validated_data['email'],
+        )
+
+        user.set_password(validated_data['password'])
+        user.save()
+
+        return user
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """

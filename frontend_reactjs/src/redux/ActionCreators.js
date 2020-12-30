@@ -285,3 +285,33 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('creds');
   dispatch(receiveLogout())
 }
+
+/**
+ * Register user
+ */
+export const registerUser = (dataUser) => (dispatch) => {
+        
+  return fetch(baseUrlApiRest + apiUrl + 'users', {
+      method: "POST",
+      body: JSON.stringify(dataUser),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => { console.log('Register user', response); alert('Thank you for your registration!\n'+JSON.stringify(response)); })
+  .catch(error =>  { console.log('Register user', error.message); alert('User could not be registered\nError: '+error.message); });
+};

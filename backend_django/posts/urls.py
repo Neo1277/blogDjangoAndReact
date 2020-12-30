@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'api/posts$', views.PostsListView.as_view()),
     url(r'api/featured_posts$', views.FeaturedPostsListView.as_view()),
     url(r'api/comments$', views.CommentsView.as_view()),
+    url(r'api/users', views.RegisterUserView.as_view()),
 ]

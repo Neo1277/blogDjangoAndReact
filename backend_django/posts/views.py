@@ -2,7 +2,13 @@ from django.http.response import JsonResponse
  
 from posts.models import Genre, Post, Image, Comment
 
-from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer,MyTokenObtainPairSerializer
+from posts.serializers import (
+    GenreSerializer,
+    PostSerializer,
+    CommentSerializer,
+    MyTokenObtainPairSerializer,
+    RegisterUserSerializer
+)
 
 from datetime import datetime
 
@@ -17,6 +23,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 """
 Applying inheritance to classes
 """
+
+class RegisterUserView(generics.CreateAPIView):
+    serializer_class = RegisterUserSerializer
 
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html#customizing-token-claims
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -69,6 +78,6 @@ class CommentsView(generics.ListCreateAPIView):
     """
     Save comment
     IsAuthenticatedOrReadOnly
-    https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
+    https://www.django-rest-framework.org/api-guide/permissions/#isauthenticatedorreadonly
     """
 

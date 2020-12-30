@@ -121,3 +121,8 @@ address{
 .postImage{
   height: 310px;
 }
+
+.userNav{
+  padding-right: 10px;
+  padding-left: 10px;
+}

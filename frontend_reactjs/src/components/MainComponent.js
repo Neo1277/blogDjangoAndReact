@@ -13,7 +13,8 @@ import {
   fetchComments, 
   postComment, 
   loginUser, 
-  logoutUser 
+  logoutUser,
+  registerUser
 } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
@@ -38,6 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
   postComment: (post, nickname, content) => dispatch(postComment(post, nickname, content)),
   loginUser: (creds) => dispatch(loginUser(creds)),
   logoutUser: () => dispatch(logoutUser()),
+  registerUser: (dataUser) => dispatch(registerUser(dataUser)),
 });
 
 
@@ -105,6 +107,7 @@ class Main extends Component {
           auth={this.props.auth} 
           loginUser={this.props.loginUser} 
           logoutUser={this.props.logoutUser} 
+          registerUser={this.props.registerUser} 
         />
             <Switch>
               <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
