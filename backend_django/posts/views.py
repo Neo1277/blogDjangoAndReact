@@ -2,12 +2,14 @@ from django.http.response import JsonResponse
  
 from posts.models import Genre, Post, Image, Comment
 
-from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer
+from posts.serializers import GenreSerializer, PostSerializer, CommentSerializer,MyTokenObtainPairSerializer
 
 from datetime import datetime
 
 from rest_framework.parsers import JSONParser
 from rest_framework import status, generics, permissions
+
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 # Class-based Views
 # https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views
@@ -15,6 +17,11 @@ from rest_framework import status, generics, permissions
 """
 Applying inheritance to classes
 """
+
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html#customizing-token-claims
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
 # Generic class-based views for genres list requests
 
 class GenresListView(generics.ListAPIView):
@@ -26,7 +33,6 @@ class GenresListView(generics.ListAPIView):
         Populate genres and posts nested
         """
         genre = Genre.objects.filter(show_menu_list='YES')
-        post = Post.objects.filter(status='1', genres=genre)
         return genre
 
 
@@ -41,7 +47,6 @@ class PostsListView(generics.ListAPIView):
         Populate posts and images nested
         """
         post = Post.objects.filter(status='1').order_by('-created_on')
-        image = Image.objects.filter(post=post)
         return post
 
 
@@ -60,7 +65,6 @@ class FeaturedPostsListView(generics.ListAPIView):
         #Filter featured posts: current datetime between datetimes fields in the database
         post = Post.objects.filter(status='1', initial_featured_date__lte = current_date, end_featured_date__gte = current_date)
 
-        image = Image.objects.filter(post=post)
         return post
 
 
@@ -74,3 +78,4 @@ class CommentsView(generics.ListCreateAPIView):
     Link Separate permissions per methods:
     https://stackoverflow.com/a/19784496/9655579
     """
+

@@ -23,14 +23,16 @@ from django.conf.urls import url
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation
 
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
+
+# Import customized TokenObtainPairView
+from posts.views import MyTokenObtainPairView
 
 #include startapps, admin and media related urls
 urlpatterns = [
     url(r'^', include('posts.urls')),
     path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

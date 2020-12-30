@@ -14,7 +14,7 @@ import Slider from './SliderComponent';
 import { Control, Form, Errors } from 'react-redux-form';
 
 const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
+//const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
 /**
@@ -34,9 +34,9 @@ class Comment extends Component {
      * Send parameters to do the post request and clear fields in the view
      */
     handleSubmit(values){
-        console.log("Current State is: "+ JSON.stringify(this.props.postId + ", " +values))
+        //console.log("Current State is: "+ JSON.stringify(this.props.postId + ", " +values))
         //alert("Current State is: "+ JSON.stringify(this.props.postId + ", " +values));
-        this.props.postComment(this.props.postId, values.nickname, values.comment)
+        this.props.postComment(this.props.postId, values.comment)
         this.props.resetCommentForm();
     }
 
@@ -53,28 +53,6 @@ class Comment extends Component {
                     </div>
                     <div className="col-12 col-md-9">
                     <Form model="comment" onSubmit={(values) => this.handleSubmit(values)}>
-                            <Row className="form-group">
-                                <Label htmlFor="nickname" md={2}>Nickname</Label>
-                                <Col md={10}>
-                                    <Control.text model=".nickname" id="nickname" name="nickname"
-                                        placeholder="Nickname"
-                                        className="form-control" 
-                                        validators={{
-                                            required, minLength: minLength(3), maxLength: maxLength(15)
-                                        }}
-                                         />
-                                         <Errors 
-                                            className="text-danger"
-                                            model=".nickname" 
-                                            show="touched" 
-                                            messages={{
-                                                required: 'Required',
-                                                minLength: ' Must be greater than 2 characters',
-                                                maxLength: ' Must be 15 characters or less'
-                                            }}
-                                          />
-                                </Col>
-                            </Row>
                             <Row className="form-group">
                                 <Label htmlFor="comment" md={2}>Comment</Label>
                                 <Col md={10}>

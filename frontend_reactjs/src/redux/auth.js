@@ -8,6 +8,7 @@ export const Auth = (state = {
         isAuthenticated: localStorage.getItem('token') ? true : false,
         token: localStorage.getItem('token'),
         user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
+        user_id: localStorage.getItem('user_id') ? JSON.parse(localStorage.getItem('user_id')) : null,
         errMess: null
     }, action) => {
     switch (action.type) {
@@ -40,7 +41,8 @@ export const Auth = (state = {
                 isLoading: false,
                 isAuthenticated: false,
                 token: '',
-                user: null
+                user: null,
+                user_id: null
             };
         default:
             return state

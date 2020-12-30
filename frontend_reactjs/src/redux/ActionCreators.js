@@ -159,10 +159,11 @@ export const addComment = (comment) => ({
 /**
  * Send post request to save comment
  */
-export const postComment = (post, nickname, content) => (dispatch) => {
-
+export const postComment = (post, content) => (dispatch) => {
+  const author = localStorage.getItem('user_id');
   const newComment = {
     post: post,
+    author: author,
     content: content
   }
   const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -249,6 +250,9 @@ export const loginUser = (creds) => (dispatch) => {
       if (response.access) {
           // If login was successful, set the token in local storage
           localStorage.setItem('token', response.access);
+
+          // Save user id in local storage to make post requests with id (comments)
+          localStorage.setItem('user_id', response.user_id);
           localStorage.setItem('creds', JSON.stringify(creds));
           // Dispatch the success action
           dispatch(receiveLogin(response));

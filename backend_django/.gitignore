@@ -143,4 +143,7 @@ cython_debug/
 media/*
 
 # exception to the rule
-!media/.gitkeep 
+!media/.gitkeep
+
+# pyCharm
+.idea/*

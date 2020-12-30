@@ -1,9 +1,27 @@
 from rest_framework import serializers 
 from posts.models import Genre, Post, Image, Comment
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 """
 Serialize data to send it with json format
 """
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """
+    Customizing JWT response from django-rest-framework-simplejwt
+    https://stackoverflow.com/a/55859751/9655579
+    """
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        # Add extra responses here
+        data['user_id'] = self.user.id
+        data['username'] = self.user.username
+        #data['groups'] = self.user.groups.values_list('name', flat=True)
+        return data
 
 #Serialize genres nested array
 class GenrePostSerializer(serializers.ModelSerializer):
