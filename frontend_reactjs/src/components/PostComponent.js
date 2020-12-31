@@ -174,10 +174,10 @@ const PostContent = (props) => {
 						<p>{props.post.genres.map(e => e.name).join(' | ')}</p>
 						
                         <h5>Sinopsis:</h5>
-						<p>{props.post.description}</p>
+						<p className="textPost">{props.post.description}</p>
 						
 						<h5>Description:</h5>
-						<p>{props.post.content}</p>
+						<p className="textPost">{props.post.content}</p>
 					</div>
 				</div>
 				<div className="row">

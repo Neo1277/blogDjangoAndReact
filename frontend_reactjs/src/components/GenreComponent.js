@@ -8,7 +8,8 @@ import {
 	CardBody, 
 	CardTitle,
 	Breadcrumb, 
-	BreadcrumbItem 
+	BreadcrumbItem,
+	Button
 } from 'reactstrap';
 
 /**
@@ -56,8 +57,15 @@ const GenreContent = (props) => {
 									<CardImg className="postImage" src={field.image_post} alt={field.title} />
 								</Link>
 								<CardBody>
-									<CardTitle>{field.title} </CardTitle>
-									<CardText>{field.description}</CardText>
+									<CardTitle className="postCardTitle">{field.title}</CardTitle>
+									<CardText className="postCardDescription">
+										{(field.description).substr(0,150)}...
+									</CardText>
+									<div align="center">
+										<Link to={`/post/${field.slug}`} >
+											<Button color="secondary">Read more</Button>
+										</Link>
+									</div>
 								</CardBody>
 								
 							</Card>

@@ -55,20 +55,20 @@ const Home = (props) => {
 							</Breadcrumb>
 						</div>
 					</div>
-					<div className="row">
+					<div className="row row-content">
 						
-						<div className="col-12 col-sm-4 order-sm-first col-md-2">
+						<div className="col-12 col-sm-4 order-sm-first col-md-2 sidebarGenres">
 							
 							
 							<div className="row">
 								<Nav vertical navbar>
-									<h4>Categories</h4>
+									<h5 align="center">Categories</h5>
 									{props.genres.genres.map((field, i) => { 
 										return(
 											<div className="col">
 											<NavItem>
 											
-												<NavLink tag={Link} to={`/genre/${field.slug}`}>{field.name}</NavLink>
+												<NavLink className="linkGenre" tag={Link} to={`/genre/${field.slug}`}>{field.name}</NavLink>
 											</NavItem>
 											</div>
 										);
@@ -88,7 +88,7 @@ const Home = (props) => {
 							
 						</div>
 						<div className="col col-sm order-sm-last col-md">
-							<h4 align="center">Latest posts</h4>
+							<h5 align="center">Latest posts</h5>
 							
 							<div className="row row-content">
 							{
@@ -105,8 +105,8 @@ const Home = (props) => {
 															<CardImg className="postImage" src={field.image_post} alt={field.title} />
 														</Link>
 														<CardBody>
-															<CardTitle>{field.title} </CardTitle>
-															<CardText className="postDescription">
+															<CardTitle className="postCardTitle">{field.title}</CardTitle>
+															<CardText className="postCardDescription">
 																{(field.description).substr(0,150)}...
 															</CardText>
 															<div align="center">

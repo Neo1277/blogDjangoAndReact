@@ -13,7 +13,7 @@
 }
 .row-content {
   margin:0px auto;
-  padding: 50px 0px 50px 0px;
+  padding: 10px 0px 50px 0px;
   border-bottom: 1px ridge;
   min-height:400px;
   color: #800080;
@@ -132,4 +132,27 @@ address{
 
 .genreLink{
   text-decoration: none;
+}
+
+.sidebarGenres{
+  background-color: #e9ecef;
+  padding-top: 20px;
+  /*background-color: #F5F5F5;*/
+}
+
+.linkGenre{
+  color:#0000CD;
+}
+
+.postCardTitle{
+  text-align: center;
+}
+
+.postCardDescription{
+  font-size:  14px;
+  text-align: justify;
+}
+
+.textPost{
+  text-align: justify;
 }
