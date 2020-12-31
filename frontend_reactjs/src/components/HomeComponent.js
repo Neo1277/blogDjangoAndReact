@@ -11,7 +11,9 @@ import {
 	NavItem, 
 	NavLink, 
 	Breadcrumb, 
-	BreadcrumbItem
+	BreadcrumbItem,
+	Button
+	
 } from 'reactstrap';
 import Slider from './SliderComponent';
 import { FadeTransform } from 'react-animation-components';
@@ -53,27 +55,43 @@ const Home = (props) => {
 							</Breadcrumb>
 						</div>
 					</div>
-					<div className="row row-content">
+					<div className="row">
 						
-						<div className="col-2">
-							<h4>Categories</h4>
+						<div className="col-12 col-sm-4 order-sm-first col-md-2">
+							
+							
+							<div className="row">
+								<Nav vertical navbar>
+									<h4>Categories</h4>
 									{props.genres.genres.map((field, i) => { 
 										return(
-											<Nav vertical>
-												<NavItem>
-													{/*<NavLink href={`/genre/${field.slug}`}>{field.name}</NavLink>*/}
-													<NavLink tag={Link} to={`/genre/${field.slug}`}>{field.name}</NavLink>
-												</NavItem>
-											</Nav>
+											<div className="col">
+											<NavItem>
+											
+												<NavLink tag={Link} to={`/genre/${field.slug}`}>{field.name}</NavLink>
+											</NavItem>
+											</div>
 										);
 										
 									}) }
+								</Nav>
+								{/*<ButtonGroup vertical size="lg" className="mb-2">
+									<Button disabled><h4>Categories</h4></Button>
+									{/*props.genres.genres.map((field, i) => { 
+										return(
+											<Link to={`/genre/${field.slug}`} ><Button>{field.name}</Button></Link>
+										);
+										
+									}) */}
+								{/*</ButtonGroup>*/}
+							</div>
+							
 						</div>
-						<div className="col-10">
+						<div className="col col-sm order-sm-last col-md">
 							<h4 align="center">Latest posts</h4>
 							
 							<div className="row row-content">
-						{
+							{
 								props.posts.posts.map((field, i) => { 
 									return(
 									
@@ -88,7 +106,14 @@ const Home = (props) => {
 														</Link>
 														<CardBody>
 															<CardTitle>{field.title} </CardTitle>
-															<CardText>{field.description}</CardText>
+															<CardText className="postDescription">
+																{(field.description).substr(0,150)}...
+															</CardText>
+															<div align="center">
+																<Link to={`/post/${field.slug}`} >
+																	<Button color="secondary">Read more</Button>
+																</Link>
+															</div>
 														</CardBody>
 														
 													</Card>		
@@ -99,7 +124,8 @@ const Home = (props) => {
 									);
 									
 								}) 
-						}</div>
+							}
+							</div>
 						</div>
 					</div>			
 				</div>

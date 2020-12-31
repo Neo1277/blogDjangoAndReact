@@ -99,16 +99,26 @@ class Header extends Component{
 									</NavLink>
 								</NavItem>
 							</Nav>
-                            <Nav className="ml-auto" navbar>
+                            <Nav className="ml-auto navbar-dark" navbar>
                                 <NavItem>
                                     { !this.props.auth.isAuthenticated ?
+                                        /*
+                                        Button outline changed to <a> button (more visible)
                                         <Button outline onClick={this.toggleModal}>
                                             <span className="fa fa-sign-in fa-lg"></span> Login
                                             {this.props.auth.isFetching ?
                                                 <span className="fa fa-spinner fa-pulse fa-fw"></span>
                                                 : null
                                             }
-                                        </Button>
+                                        </Button>*/
+                                        <span class="navbar-text">
+                                            <a onClick={this.toggleModal} id="loginButton" role="button">
+                                            <span className="fa fa-sign-in fa-lg"></span> Login</a>
+                                            {this.props.auth.isFetching ?
+                                                <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                                                : null
+                                            }
+                                        </span>    
                                         :
                                         <div>
                                         <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
