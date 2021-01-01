@@ -27,7 +27,6 @@
   color:floralwhite;
 }
 
-
 .headerTitle{
   color:white;
   font-size: 200%;
@@ -38,14 +37,6 @@
   font-size:100%;
 }
 
-/*
-.jumbotron {
-  padding:70px 30px 70px 30px;
-  margin:0px auto;
-  background:#8B008B ;
-  color:floralwhite;
-}
-*/
 address{
   font-size:80%;
   margin:0px;
@@ -56,51 +47,22 @@ address{
   background-color: black;
 }
 
-
-/*
-.navbar-dark {
-  background-color:#800080;
-}
-
-
-.footer{
-  background-color:#8B008B;
-  margin:0px auto;
-  padding: 20px 0px 20px 0px;
-  color:floralwhite;
-}
-
-
-*/
-
-.mainContainer {
-    /* The image used */
-    background-image: url(./static/violetshapes.jpg);
-
-    /* Full height */
-    /*opacity: 0.10;*/
-    /* Center and scale the image nicely */
-    
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .commentimg{
   height: 100px;
   width: 100px; 
 }
 
-
 .carousel .carousel-item {
   /*height: 500px; */
   height: 91vh;
 }
+
 .carousel-indicators li {
   width: 10px;
   height: 10px;
   border-radius: 100%;
 }
+
 .carousel .carousel-item img {
   position: absolute;
   top: 0;
@@ -109,6 +71,7 @@ address{
   height: 100%; 
   width: 100%; 
 }
+
 .genreImage{
   width: 230px;
   height: 310px;
@@ -155,4 +118,30 @@ address{
 
 .textPost{
   text-align: justify;
+}
+
+.nav-tabs {
+  border-bottom: 0px;
+}
+
+.userNav a, .close {
+  color:white;
+}
+
+.userNav a:hover, .userNav a:visited, .userNav a:link, .userNav a:active
+{
+    text-decoration: none;
+}
+
+.modal-header {
+  background-color: black;
+  text-decoration: none;
+}
+
+.userNav a:hover{
+  color:#A9A9A9;
+}
+
+.postCard{
+  padding-bottom: 30px;
 }

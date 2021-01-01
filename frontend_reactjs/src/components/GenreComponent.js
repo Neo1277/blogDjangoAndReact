@@ -51,7 +51,7 @@ const GenreContent = (props) => {
 					{props.genre.postsgen.map((field, i) => { 
 						
 						return(
-						<div key={field._id} className="col-12 col-md-4 m-20">
+						<div key={field._id} className="col-12 col-md-4 m-20 postCard">
 							<Card>
 								<Link to={`/post/${field.slug}`} >
 									<CardImg className="postImage" src={field.image_post} alt={field.title} />

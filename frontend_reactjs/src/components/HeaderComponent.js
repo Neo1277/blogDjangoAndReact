@@ -140,97 +140,97 @@ class Header extends Component{
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>
-                            <Nav tabs>
-                                <NavItem className="userNav"> 
-                                    <NavLink
-                                        className={classnames({ active: this.state.activeTab === '1' })}
-                                        onClick={() => { this.toggleTab('1'); }}  to="/"
-                                    >
-                                        Login        
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem className="userNav">
-                                    <NavLink
-                                        className={classnames({ active: this.state.activeTab === '2' })}
-                                        onClick={() => { this.toggleTab('2'); }}  to="/"
-                                    >
-                                        Sign up  
-                                    </NavLink>
-                                </NavItem>
-                            </Nav>
-                        </ModalHeader>
-                        <TabContent activeTab={this.state.activeTab}>
-                            <TabPane tabId="1">
-                                { this.state.activeTab == 1 ? 
-                                    <ModalBody>
-                                        <Form onSubmit={this.handleLogin}>
-                                            <FormGroup>
-                                                <Label htmlFor="username">Username</Label>
-                                                <Input type="text" id="username" name="username"
-                                                    innerRef={(input) => this.username = input} />
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Label htmlFor="password">Password</Label>
-                                                <Input type="password" id="password" name="password"
-                                                    innerRef={(input) => this.password = input}  />
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" name="remember"
-                                                    innerRef={(input) => this.remember = input}  />
-                                                    Remember me
-                                                </Label>
-                                            </FormGroup>
-                                            <Button type="submit" value="submit" color="secondary">Login</Button>
-                                        </Form>
-                                    </ModalBody>
-                                : null 
-                                
-                                }
-                            </TabPane>
-                            <TabPane tabId="2">
-                                { this.state.activeTab == 2 ? 
-                                
-                                    <ModalBody>
-                                        <Form onSubmit={this.handleRegister}>
-                                            <FormGroup>
-                                                <Label htmlFor="username">Username</Label>
-                                                <Input type="text" id="username" name="username"
-                                                    innerRef={(input) => this.username = input} />
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Label htmlFor="first_name">First name</Label>
-                                                <Input type="text" id="first_name" name="first_name"
-                                                    innerRef={(input) => this.first_name = input} />
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Label htmlFor="last_name">Last name</Label>
-                                                <Input type="text" id="last_name" name="last_name"
-                                                    innerRef={(input) => this.last_name = input} />
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Label htmlFor="email">Email address</Label>
-                                                <Input type="email" id="email" name="email"
-                                                    innerRef={(input) => this.email = input} />
-                                            </FormGroup>
-                                            <FormGroup>
-                                                <Label htmlFor="password">Password</Label>
-                                                <Input type="password" id="password" name="password"
-                                                    innerRef={(input) => this.password = input}  />
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" name="remember"
-                                                    innerRef={(input) => this.remember = input}  />
-                                                    Remember me
-                                                </Label>
-                                            </FormGroup>
-                                            <Button type="submit" value="submit" color="secondary">Sign up</Button>
-                                        </Form>
-                                    </ModalBody>
-                                : null }
-                            </TabPane>
-                        </TabContent>
+                        <Nav tabs>
+                            <NavItem className="userNav"> 
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === '1' })}
+                                    onClick={() => { this.toggleTab('1'); }}  to="/"
+                                >
+                                    Login        
+                                </NavLink>
+                            </NavItem>
+                            <NavItem className="userNav">
+                                <NavLink
+                                    className={classnames({ active: this.state.activeTab === '2' })}
+                                    onClick={() => { this.toggleTab('2'); }}  to="/"
+                                >
+                                    Sign up  
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                    </ModalHeader>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            { this.state.activeTab == 1 ? 
+                                <ModalBody>
+                                    <Form onSubmit={this.handleLogin}>
+                                        <FormGroup>
+                                            <Label htmlFor="username">Username</Label>
+                                            <Input type="text" id="username" name="username"
+                                                innerRef={(input) => this.username = input} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="password">Password</Label>
+                                            <Input type="password" id="password" name="password"
+                                                innerRef={(input) => this.password = input}  />
+                                        </FormGroup>
+                                        <FormGroup check>
+                                            <Label check>
+                                                <Input type="checkbox" name="remember"
+                                                innerRef={(input) => this.remember = input}  />
+                                                Remember me
+                                            </Label>
+                                        </FormGroup>
+                                        <Button type="submit" value="submit" color="secondary">Login</Button>
+                                    </Form>
+                                </ModalBody>
+                            : null 
+                            
+                            }
+                        </TabPane>
+                        <TabPane tabId="2">
+                            { this.state.activeTab == 2 ? 
+                            
+                                <ModalBody>
+                                    <Form onSubmit={this.handleRegister}>
+                                        <FormGroup>
+                                            <Label htmlFor="username">Username</Label>
+                                            <Input type="text" id="username" name="username"
+                                                innerRef={(input) => this.username = input} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="first_name">First name</Label>
+                                            <Input type="text" id="first_name" name="first_name"
+                                                innerRef={(input) => this.first_name = input} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="last_name">Last name</Label>
+                                            <Input type="text" id="last_name" name="last_name"
+                                                innerRef={(input) => this.last_name = input} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="email">Email address</Label>
+                                            <Input type="email" id="email" name="email"
+                                                innerRef={(input) => this.email = input} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="password">Password</Label>
+                                            <Input type="password" id="password" name="password"
+                                                innerRef={(input) => this.password = input}  />
+                                        </FormGroup>
+                                        <FormGroup check>
+                                            <Label check>
+                                                <Input type="checkbox" name="remember"
+                                                innerRef={(input) => this.remember = input}  />
+                                                Remember me
+                                            </Label>
+                                        </FormGroup>
+                                        <Button type="submit" value="submit" color="secondary">Sign up</Button>
+                                    </Form>
+                                </ModalBody>
+                            : null }
+                        </TabPane>
+                    </TabContent>
                 </Modal>				
 			</>
 		);

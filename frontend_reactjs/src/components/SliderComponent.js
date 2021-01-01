@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
  * Arrow function Image
  * if item has a slug it returns an image with a link to the post
  * else it just returns the image (Slider of images within a post)
+ * The img width is fixed in App.css file
  */
 const Image = (props) => {
   if (props.item.slug) {

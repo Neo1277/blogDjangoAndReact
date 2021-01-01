@@ -95,7 +95,7 @@ const Home = (props) => {
 								props.posts.posts.map((field, i) => { 
 									return(
 									
-										<div key={field._id} className="col-12 col-md-4 m-20">
+										<div key={field._id} className="col-12 col-md-4 m-20 postCard">
 											<FadeTransform in 
 												transformProps={{
 													exitTransform: 'scale(0.5) translateY(-50%)'
