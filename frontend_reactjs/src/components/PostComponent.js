@@ -109,7 +109,7 @@ function RenderComments({comments}){
                                         <Media className="commentimg" object src="/assets/images/blank-profile-picture.png" alt={comment.nickname} />
                                     </Media>
                                     <Media body className="ml-5">
-                                        <Media heading>{comment.nickname}</Media>
+                                        <h6>{comment.username}</h6>
                                         <p>{comment.content}</p>
                                         <p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(new Date(Date.parse(comment.datetime)))}</p>
                                     </Media>

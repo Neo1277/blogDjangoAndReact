@@ -67,10 +67,15 @@ class ImageSerializer(serializers.ModelSerializer):
 
 #Serialize comments
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Get username field from User model, one to many relation (author field)
+    https://stackoverflow.com/a/46499968/9655579
+    """
+    username = serializers.CharField(read_only=True, source="author.username")
 
     class Meta:
         model = Comment
-        fields = ('__all__')
+        fields = ['post','content','datetime', 'username']
 
 class PostSerializer(serializers.ModelSerializer):
     

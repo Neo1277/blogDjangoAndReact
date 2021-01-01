@@ -34,7 +34,7 @@ class Genre(models.Model):
         choices=SHOW_MENU_LIST_CHOICES,
         default=NOTSHOW,
     )
-    image_genre = models.ImageField(upload_to=get_file_path)
+    image_genre = models.ImageField(upload_to=get_file_path, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -60,7 +60,7 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     url_website = models.URLField(max_length=200, null=True, blank=True)
     url_video = models.URLField(max_length=200, null=True, blank=True)
-    director = models.CharField(max_length=200)
+    director = models.CharField(max_length=200, null=True, blank=True)
 
     #Field from django_countries library to get a list of countries and associate the post with it
     country = CountryField()
