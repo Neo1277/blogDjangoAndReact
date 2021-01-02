@@ -263,7 +263,7 @@ export const loginUser = (creds) => (dispatch) => {
           throw error;
       }
   })
-  .catch(error => dispatch(loginError(error.message)))
+  .catch(error => { console.log('Login user', error.message); alert('User could not be authenticated\nError: '+error.message);dispatch(loginError(error.message)); }   ) 
 };
 
 export const requestLogout = () => {

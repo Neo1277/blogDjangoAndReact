@@ -120,7 +120,7 @@ class Header extends Component{
                                             }
                                         </span>    
                                         :
-                                        <div>
+                                        /*<div>
                                         <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
                                         <Button outline onClick={this.handleLogout}>
                                             <span className="fa fa-sign-out fa-lg"></span> Logout
@@ -129,7 +129,16 @@ class Header extends Component{
                                                 : null
                                             }
                                         </Button>
-                                        </div>
+                                        </div>*/
+                                        <div>
+                                            <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
+                                            <a onClick={this.handleLogout} id="loginButton" role="button">
+                                            <span className="fa fa-sign-out fa-lg"></span> Logout</a>
+                                            {this.props.auth.isFetching ?
+                                                <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                                                : null
+                                            }
+                                        </div> 
                                     }
 
                                 </NavItem>

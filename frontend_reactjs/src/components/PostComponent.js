@@ -52,7 +52,7 @@ class Comment extends Component {
                         <h4>Make a comment about this post</h4>
                     </div>
                     <div className="col-12 col-md-9">
-                    <Form model="comment" onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="comment" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="comment" md={2}>Comment</Label>
                                 <Col md={10}>
