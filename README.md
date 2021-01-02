@@ -1,12 +1,13 @@
 # Django and React integration #
 
-This web application consists on a basic personal blog to make posts, to create categories, this also includes featured posts shown on slider, comments on each post and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
+This web application consists on a basic personal blog to make posts, to create categories, this also includes featured posts shown on slider, user registration, login, comments on each post by logged in users and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
 
-## Example ##
-![Example](https://user-images.githubusercontent.com/59356298/102147219-66e05280-3e38-11eb-8f5f-f6e9d18795a1.png)
+## Examples (images) ##
+[Demo (image 1)](https://user-images.githubusercontent.com/59356298/103450354-23347800-4c83-11eb-85d9-bdad72bfdb16.png "demo 1")
+[Demo (image 2)](https://user-images.githubusercontent.com/59356298/103450370-68f14080-4c83-11eb-968d-429126c37ee8.png "demo 2")
 
 ## Programming languages (frameworks, libraries) ##
-*   Django (Django rest framework, Django models, Django admin, JSON, serialization)
+*   Django (Django rest framework, Django models, Django admin, JSON, serialization, Simple JSON Web Token authentication)
 *   Reactjs (HTML, CSS, reactstrap, react redux, react route, JSON)
 
 ## Database ##
@@ -14,6 +15,7 @@ This web application consists on a basic personal blog to make posts, to create 
 
 ## Installation ##
 *   First create a MySQL database named "posts" 
+*   To connect the Django application with the MySQL database, go to the settings.py file, which is located in the directory backend_django/backend_django and in DATABASES dictionary, configurate the cretentials, host and so on.
 *   Create a virtual enviroment for the django dependencies [Link official documentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
 *   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the following command using the requirements.txt file which has the dependencies
 	* ### `pip install -r requirements.txt`
