@@ -3,6 +3,8 @@ from rest_framework.test import APITestCase, URLPatternsTestCase
 from rest_framework import status
 from .models import Genre, Post
 
+from django.contrib.auth.models import User
+
 def create_genre(genre_data):
     """
     Create a genre with the given `genre_data` dictionary
@@ -17,12 +19,27 @@ def create_post(post_data):
 
     return Post.objects.create(**post_data)
 
-class AccountTests(APITestCase):
+
+def create_user(username, email, password):
+    """
+    Create a user with the given parameters
+    """
+
+    return User.objects.create_user(username, email, password)
+
+class PostsTest(APITestCase):
 
     def test_genres_get_endpoint(self):
         """
-        Ensure we can create a new genre object.
+        Ensure we can create a new object.
         """
+
+        username = 'paula'
+        email = 'paula@gmail.com'
+        password = 'mypasswprd123'
+
+        user = create_user(username, email, password)
+
         genre_data = {
             'name': 'Movies',
             'slug':'movies',
@@ -32,7 +49,6 @@ class AccountTests(APITestCase):
 
         genre = create_genre(genre_data)
 
-        """
         post_data = {
             'title': 'Spiderman 3',
             'slug':'spiderman',
@@ -40,11 +56,11 @@ class AccountTests(APITestCase):
             'status': 1,
             'country':'US',
             'image_post':'posts/2f474f0e-1168-4f00-b123-2556c30cf385.jpg',
-            'author_id': 1
+            'author_id': user.id
         }
 
-        create_post(post_data)
-        """
+        post = create_post(post_data)
+        post.genres.add(genre)
 
         url = reverse('posts:genres')
 
