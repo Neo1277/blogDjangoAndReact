@@ -29,7 +29,7 @@ def create_user(username, email, password):
 
 class PostsTest(APITestCase):
 
-    def test_genres_get_endpoint(self):
+    def set_new_objects(self):
         """
         Ensure we can create a new object.
         """
@@ -62,7 +62,23 @@ class PostsTest(APITestCase):
         post = create_post(post_data)
         post.genres.add(genre)
 
+    def test_genres_get_endpoint(self):
+
         url = reverse('posts:genres')
+
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_posts_get_endpoint(self):
+
+        url = reverse('posts:posts')
+
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_featured_posts_get_endpoint(self):
+
+        url = reverse('posts:featured_posts')
 
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
