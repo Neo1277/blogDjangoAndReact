@@ -32,6 +32,10 @@ This web application consists on a basic personal blog to make posts, to create 
 *   Also go to the frontend_reactjs folder and run
 	* ### `yarn start`
 
+## Running tests ##
+*   To run test for backend, go to the backend_django folder and run:
+	* ### `python manage.py test posts`
+
 ## Notes ##
 *   If different ports are being used, go to the settings.py file and change the port in the whitelist, or change the port in the baseUrl.js file, it depends on the configuration.
 *   This application is not using https yet, it uses http, when deploying the application, I suggest using https, a private key and a public key (SSL) for exchanging data between client and server for security.
