@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'api/posts$', views.PostsListView.as_view(), name='posts'),
     url(r'api/featured_posts$', views.FeaturedPostsListView.as_view(), name='featured_posts'),
     url(r'api/comments$', views.CommentsView.as_view(), name='comments'),
+    url(r'api/rate_posts$', views.PostRatingView.as_view(), name='rate_posts'),
     url(r'api/users', views.RegisterUserView.as_view(), name='users'),
 ]

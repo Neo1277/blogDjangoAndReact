@@ -17,6 +17,7 @@ import {
 } from 'reactstrap';
 import Slider from './SliderComponent';
 import { FadeTransform } from 'react-animation-components';
+import StarRating  from './StarRatingComponent';
 
 /**
  * Show status if the page is Loading shows spinner else shows error or the page content
@@ -117,7 +118,7 @@ const Home = (props) => {
 														</CardBody>
 														
 													</Card>		
-										
+													{/*<StarRating totalStars={5} />*/}
 											</FadeTransform>
 										</div>		
 																		

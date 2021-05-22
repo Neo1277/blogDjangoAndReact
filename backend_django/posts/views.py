@@ -1,13 +1,14 @@
 from django.http.response import JsonResponse
  
-from posts.models import Genre, Post, Image, Comment
+from posts.models import Genre, Post, Image, Comment, PostRating
 
 from posts.serializers import (
     GenreSerializer,
     PostSerializer,
     CommentSerializer,
     MyTokenObtainPairSerializer,
-    RegisterUserSerializer
+    RegisterUserSerializer,
+    PostRatingSerializer
 )
 
 from datetime import datetime
@@ -81,3 +82,13 @@ class CommentsView(generics.ListCreateAPIView):
     https://www.django-rest-framework.org/api-guide/permissions/#isauthenticatedorreadonly
     """
 
+
+class PostRatingView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = PostRatingSerializer
+    queryset = PostRating.objects.all()
+
+    """
+    IsAuthenticatedOrReadOnly
+    https://www.django-rest-framework.org/api-guide/permissions/#isauthenticatedorreadonly
+    """

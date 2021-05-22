@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from posts.models import Genre, Post, Image, Comment
+from posts.models import Genre, Post, Image, Comment, PostRating
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 """
@@ -119,3 +119,12 @@ class GenreSerializer(serializers.ModelSerializer):
                   'show_menu_list',
                   'image_genre',
                   'postsgen']
+
+#Serialize rating
+class PostRatingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PostRating
+        fields = ['post',
+                  'author',
+                  'rating']
