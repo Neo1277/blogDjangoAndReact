@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+
 const Star = ({ selected=false, onClick=f=>f }) => (
     <div className={ (selected) ? "star selected" : "star" } onClick={onClick}>
     </div>
 )
 
-class StarRating extends React.Component {
+export class RatePostWithStars extends React.Component {
     constructor(props) {
         super(props)
         this.state = { starsSelected: 0 }
@@ -35,4 +36,25 @@ class StarRating extends React.Component {
     }
 }
 
-export default StarRating;
+export class StarRating extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        const { totalStars } = this.props.totalStars
+        const { starsSelected } = this.props.starsSelected
+
+        return(
+            <div className="star-rating">
+                {[...Array(this.props.totalStars)].map((n,i) => 
+                    <Star 
+                        key={i}
+                        selected={i<this.props.starsSelected}
+                    />
+                 )}
+                <p>{this.props.starsSelected} of {this.props.totalStars} stars</p>
+            </div>
+        )
+    }
+}
