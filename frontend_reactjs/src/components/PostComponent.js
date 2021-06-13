@@ -13,6 +13,8 @@ import { Loading } from './LoadingComponent';
 import Slider from './SliderComponent';
 import { Control, Form, Errors } from 'react-redux-form';
 
+import { RatePostWithStars, StarRating }  from './StarRatingComponent';
+
 const required = (val) => val && val.length;
 //const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -173,6 +175,13 @@ const PostContent = (props) => {
 						 */}
 						<p>{props.post.genres.map(e => e.name).join(' | ')}</p>
 						
+                        <h5>Rating:</h5>
+                        {props.post.avg_rating ?
+						    <StarRating totalStars={5} starsSelected={props.post.avg_rating} />
+						:
+                            <p>This post is not voted</p>
+                        }
+
                         <h5>Sinopsis:</h5>
 						<p className="textPost">{props.post.description}</p>
 						

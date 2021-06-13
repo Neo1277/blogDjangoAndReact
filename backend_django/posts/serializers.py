@@ -85,6 +85,8 @@ class PostSerializer(serializers.ModelSerializer):
     #Put images data inside postsgen as a nested array
     imageps = ImageSerializer(read_only=True,many=True)
 
+    avg_rating = serializers.FloatField(read_only=True)
+
     class Meta:
         model = Post
         fields = ['id',
@@ -102,7 +104,8 @@ class PostSerializer(serializers.ModelSerializer):
                   'director',
                   'country',
                   'image_post',
-                  'imageps']
+                  'imageps',
+                  'avg_rating']
 
 #Parent array nested objects genres
 class GenreSerializer(serializers.ModelSerializer):

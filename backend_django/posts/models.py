@@ -119,3 +119,9 @@ class PostRating(models.Model):
     )
 
     datetime = models.DateTimeField(auto_now_add=True)
+
+# Round to the nearest integer
+# https://stackoverflow.com/a/35945471
+class Round(models.Func):
+    function = 'ROUND'
+    template='%(function)s(%(expressions)s, 0)'

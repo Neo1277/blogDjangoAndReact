@@ -1,6 +1,6 @@
 from django.http.response import JsonResponse
  
-from posts.models import Genre, Post, Image, Comment, PostRating
+from posts.models import Genre, Post, Image, Comment, PostRating, Round
 
 from posts.serializers import (
     GenreSerializer,
@@ -17,6 +17,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status, generics, permissions
 
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+from django.db.models import Avg, F
 
 # Class-based Views
 # https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views
@@ -52,7 +54,13 @@ class PostsListView(generics.ListAPIView):
     """
     queryset = Post.objects.filter(status='1').order_by('-created_on')
 
+    # https://docs.djangoproject.com/en/3.2/ref/models/expressions/#subquery-expressions
+    # https://docs.djangoproject.com/en/3.2/topics/db/queries/#expressions-can-reference-transforms
 
+    # Calculate average of rating and round to the nearest integer
+    # https://stackoverflow.com/a/51645709
+    def get_queryset(self):
+        return super().get_queryset().annotate(avg_rating=Round(Avg(F('ratingps__rating'))))
 
 # Generic class-based views forFeatured  posts list requests
 class FeaturedPostsListView(generics.ListAPIView):
