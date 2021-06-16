@@ -131,3 +131,12 @@ class PostRatingSerializer(serializers.ModelSerializer):
         fields = ['post',
                   'author',
                   'rating']
+
+    def validate(self, data):
+        """
+        Check that start is before finish.
+        """
+        if PostRating.objects.filter(post=data['post'], author=data['author']).exists():
+            raise serializers.ValidationError("You have already rated this post")
+
+        return data

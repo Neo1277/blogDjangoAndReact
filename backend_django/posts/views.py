@@ -51,16 +51,18 @@ class PostsListView(generics.ListAPIView):
     """
     Querys with more than one row to serialize data
     Populate posts and images nested
+    
+    Calculate average of rating and round to the nearest integer
+    https://stackoverflow.com/a/51645709
     """
-    queryset = Post.objects.filter(status='1').order_by('-created_on')
+    queryset = Post.objects.filter(
+        status='1'
+    ).order_by('-created_on').annotate(
+        avg_rating=Round(Avg(F('ratingps__rating')))
+    )
 
     # https://docs.djangoproject.com/en/3.2/ref/models/expressions/#subquery-expressions
     # https://docs.djangoproject.com/en/3.2/topics/db/queries/#expressions-can-reference-transforms
-
-    # Calculate average of rating and round to the nearest integer
-    # https://stackoverflow.com/a/51645709
-    def get_queryset(self):
-        return super().get_queryset().annotate(avg_rating=Round(Avg(F('ratingps__rating'))))
 
 # Generic class-based views forFeatured  posts list requests
 class FeaturedPostsListView(generics.ListAPIView):
