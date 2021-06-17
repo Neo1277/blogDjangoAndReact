@@ -1,6 +1,6 @@
 # Django and React integration #
 
-This web application consists on a basic personal blog to make posts, to create categories, this also includes featured posts shown on slider, user registration, login, comments on each post by logged in users and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
+This web application consists on a basic personal blog to make posts, to create categories, this also includes featured posts shown on slider, user registration, login, comments on each post by logged in users, rate post with stars by logged in users, calculate average rating as well, and uploading content of categories and posts (text and images) using Django admin and the data is shown on a react frontend application.
 
 ## Examples (images) ##
 [Demo (image 1)](https://user-images.githubusercontent.com/59356298/103450354-23347800-4c83-11eb-85d9-bdad72bfdb16.png "demo 1")  

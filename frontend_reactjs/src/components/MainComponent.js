@@ -100,7 +100,7 @@ class Main extends Component {
     };
 
     /**
-     * Set routes to open the differen pages calling the components
+     * Set routes to open the different pages calling the components
      * And redirect to home if the url that the user type in the browser
      * does not match with any url from here
      */
@@ -113,11 +113,11 @@ class Main extends Component {
           logoutUser={this.props.logoutUser} 
           registerUser={this.props.registerUser} 
         />
-            <Switch>
-              <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
-              <Route path="/genre/:slug" component={GenreWithSlug} />
-              <Route path="/post/:slugpost" component={PostWithSlug} />
-              <Redirect to="/home" />
+          <Switch>
+            <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
+            <Route path="/genre/:slug" component={GenreWithSlug} />
+            <Route path="/post/:slugpost" component={PostWithSlug} />
+            <Redirect to="/home" />
           </Switch>
         <Footer />
       </div>
