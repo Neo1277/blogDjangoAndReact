@@ -167,4 +167,6 @@ address{
     );
 }
     
-    .star.selected {background-color: red;}
+.star.selected {
+  background-color: red;
+}

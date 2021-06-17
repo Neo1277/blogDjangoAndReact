@@ -132,9 +132,12 @@ class PostRatingSerializer(serializers.ModelSerializer):
                   'author',
                   'rating']
 
+    # Validate post request data
+    # https://stackoverflow.com/a/59468176
     def validate(self, data):
         """
-        Check that start is before finish.
+        Check if register exists
+        https://docs.djangoproject.com/en/3.2/ref/models/querysets/#exists
         """
         if PostRating.objects.filter(post=data['post'], author=data['author']).exists():
             raise serializers.ValidationError("You have already rated this post")

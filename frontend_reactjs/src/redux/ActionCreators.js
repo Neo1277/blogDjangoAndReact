@@ -315,3 +315,49 @@ export const registerUser = (dataUser) => (dispatch) => {
   .then(response => { console.log('Register user', response); alert('Thank you for your registration!\n'+JSON.stringify(response)); })
   .catch(error =>  { console.log('Register user', error.message); alert('User could not be registered\nError: '+error.message); });
 };
+
+
+/**
+ * Send rate request to save Post rating
+ */
+ export const ratePost = (post, rating) => (dispatch) => {
+
+  const author = localStorage.getItem('user_id');
+
+  //var string_rating = (rating).toString();;
+
+  const newRating = {
+    post: post,
+    author: author,
+    rating: rating
+  }
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  alert("rateing value: "+ JSON.stringify(newRating));
+
+  return fetch(baseUrlApiRest + apiUrl + 'rate_posts', {
+    method: "POST",
+    body: JSON.stringify(newRating),
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': bearer
+    },
+    credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => { console.log('Rating', response); alert('Thank you for rating this post!\n'+JSON.stringify(response)); })
+  .catch(error =>  { console.log('Rating', error.message); alert('Your rating could not be saved\nError: '+error.message); });
+};

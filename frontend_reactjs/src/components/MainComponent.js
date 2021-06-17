@@ -14,7 +14,8 @@ import {
   postComment, 
   loginUser, 
   logoutUser,
-  registerUser
+  registerUser,
+  ratePost
 } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
@@ -40,6 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
   loginUser: (creds) => dispatch(loginUser(creds)),
   logoutUser: () => dispatch(logoutUser()),
   registerUser: (dataUser) => dispatch(registerUser(dataUser)),
+  ratePost: (post, rating) => dispatch(ratePost(post, rating)),
 });
 
 
@@ -80,6 +82,7 @@ class Main extends Component {
           resetCommentForm={this.props.resetCommentForm} 
           postComment={this.props.postComment} 
           isAbleToMakeComments={true}
+          ratePost={this.props.ratePost} 
         />
         :
         <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
@@ -91,6 +94,7 @@ class Main extends Component {
           resetCommentForm={this.props.resetCommentForm} 
           postComment={this.props.postComment} 
           isAbleToMakeComments={false}
+          ratePost={this.props.ratePost} 
         />      
       );
     };

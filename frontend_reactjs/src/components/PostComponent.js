@@ -201,6 +201,17 @@ const PostContent = (props) => {
 						<p>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(new Date(Date.parse(props.post.updated_on)))}</p>
 					</div>
 				</div>
+				<div className="row">
+                    <div className="col">
+                        <br />
+                        <h5>Rate this post</h5>
+                        {props.isAbleToMakeComments ?
+                            <RatePostWithStars totalStars={5} postId={props.post.id} ratePost={props.ratePost}  />
+                        :
+                            <h7>Only authenticated users are able to rate this post</h7>
+                        }
+                    </div>
+				</div>
                 <div className="row row-content">
                     <div className="col-12">
                         <h2>Comments</h2>
