@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { 
 	Navbar, 
 	NavbarBrand, 
@@ -15,10 +15,51 @@ import {
 	Input, 
     Label, 
     TabContent, 
-    TabPane
+    TabPane, 
+    Dropdown, 
+    DropdownToggle, 
+    DropdownMenu, 
+    DropdownItem 
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
+
+const DropdownMenuComponent = (props) => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+  
+    return (
+      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <DropdownToggle caret>
+          Options
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem header>{props.auth.user.username}</DropdownItem>
+          <DropdownItem>
+              
+            <NavLink className="linkGenre" to="/profile-settings">
+                Profile settings
+            </NavLink>
+              
+          </DropdownItem>
+          <DropdownItem text>Dropdown Item Text</DropdownItem>
+          <DropdownItem disabled>Action (disabled)</DropdownItem>
+          <DropdownItem divider />
+          {/*<DropdownItem>Foo Action</DropdownItem>*/}
+          <DropdownItem>
+            <a onClick={props.handleLogout} id="loginButton" role="button">
+                <span className="fa fa-sign-out fa-lg"></span> Logout
+            </a>
+            {props.auth.isFetching ?
+                <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                : null
+            }
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  }
 
 class Header extends Component{
 	constructor(props) {
@@ -65,6 +106,12 @@ class Header extends Component{
 
     }
 
+    handleImageChange = (e) => {
+        this.setState({
+            profile_image: e.target.files[0]
+        })
+    };
+
     handleLogout() {
         this.props.logoutUser();
     }
@@ -78,6 +125,15 @@ class Header extends Component{
             last_name: this.last_name.value, 
             password: this.password.value
         });
+        /*
+        this.props.registerUser(
+            this.username.value, 
+            this.email.value, 
+            this.first_name.value, 
+            this.last_name.value, 
+            this.password.value, 
+            this.state.profile_image
+        );*/
         event.preventDefault();
 
     }    
@@ -130,6 +186,7 @@ class Header extends Component{
                                             }
                                         </Button>
                                         </div>*/
+                                        /*
                                         <div>
                                             <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
                                             <a onClick={this.handleLogout} id="loginButton" role="button">
@@ -138,7 +195,12 @@ class Header extends Component{
                                                 <span className="fa fa-spinner fa-pulse fa-fw"></span>
                                                 : null
                                             }
-                                        </div> 
+                                           
+                                        </div> */
+                                        <div>
+                                            <DropdownMenuComponent auth={this.props.auth} handleLogout={this.handleLogout} />
+                                        </div>
+                                        
                                     }
 
                                 </NavItem>

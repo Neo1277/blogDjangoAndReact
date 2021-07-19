@@ -4,6 +4,7 @@ import GenreContent from './GenreComponent';
 import PostContent from './PostComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import ProfileSettingsComponent from './ProfileSettingsComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
@@ -117,6 +118,7 @@ class Main extends Component {
             <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
             <Route path="/genre/:slug" component={GenreWithSlug} />
             <Route path="/post/:slugpost" component={PostWithSlug} />
+            <Route path='/profile-settings' component={() => <ProfileSettingsComponent />} />
             <Redirect to="/home" />
           </Switch>
         <Footer />

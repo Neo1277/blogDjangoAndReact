@@ -290,12 +290,15 @@ export const logoutUser = () => (dispatch) => {
  * Register user
  */
 export const registerUser = (dataUser) => (dispatch) => {
-        
+  
+  // Link set formdata to send post request 
+  // https://stackoverflow.com/questions/48284011/how-to-post-image-with-fetch
+  
   return fetch(baseUrlApiRest + apiUrl + 'users', {
       method: "POST",
       body: JSON.stringify(dataUser),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "multipart/form-data"
       },
       credentials: "same-origin"
   })

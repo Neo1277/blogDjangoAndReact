@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from posts.models import Genre, Post, Image, Comment, PostRating
+from posts.models import Genre, Post, Image, Comment, PostRating, UserProfileImage
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 """
@@ -29,6 +29,13 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
         user.set_password(validated_data['password'])
         user.save()
+
+        user_profile_image = UserProfileImage(
+            user=user,
+            profile_image=validated_data['profile_image']
+        )
+
+        user_profile_image.save()
 
         return user
 

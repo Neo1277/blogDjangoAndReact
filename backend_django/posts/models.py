@@ -120,6 +120,17 @@ class PostRating(models.Model):
 
     datetime = models.DateTimeField(auto_now_add=True)
 
+class UserProfileImage(models.Model):
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='user_profile_image'
+    )
+
+    profile_image = models.ImageField(upload_to=get_file_path)
+
 # Round to the nearest integer
 # https://stackoverflow.com/a/35945471
 class Round(models.Func):
