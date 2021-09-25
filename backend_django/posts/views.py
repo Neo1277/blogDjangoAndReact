@@ -2,13 +2,16 @@ from django.http.response import JsonResponse
  
 from posts.models import Genre, Post, Image, Comment, PostRating, Round
 
+from django.contrib.auth.models import User
+
 from posts.serializers import (
     GenreSerializer,
     PostSerializer,
     CommentSerializer,
     MyTokenObtainPairSerializer,
     RegisterUserSerializer,
-    PostRatingSerializer
+    PostRatingSerializer,
+    UpdateUserSerializer
 )
 
 from datetime import datetime
@@ -29,6 +32,26 @@ Applying inheritance to classes
 
 class RegisterUserView(generics.CreateAPIView):
     serializer_class = RegisterUserSerializer
+
+class UpdateUserView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UpdateUserSerializer
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # instance.username = request.data.get("username")
+        instance.first_name = request.data.get("first_name")
+        instance.last_name = request.data.get("last_name")
+        instance.last_name = request.data.get("last_name")
+        instance.email = request.data.get("email")
+        instance.set_password(request.data.get('password'))
+        instance.save()
+
+        serializer = self.get_serializer(instance)
+
+        return JsonResponse(serializer.data, safe=False, status=status.HTTP_200_OK)
 
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html#customizing-token-claims
 class MyTokenObtainPairView(TokenObtainPairView):

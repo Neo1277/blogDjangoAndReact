@@ -298,7 +298,7 @@ export const registerUser = (dataUser) => (dispatch) => {
       method: "POST",
       body: JSON.stringify(dataUser),
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "application/json"
       },
       credentials: "same-origin"
   })

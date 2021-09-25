@@ -30,14 +30,24 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
+        """
         user_profile_image = UserProfileImage(
             user=user,
             profile_image=validated_data['profile_image']
         )
 
         user_profile_image.save()
+        """
 
         return user
+
+# Update profile data
+class UpdateUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email','password']
+        write_only_fields = ('password',)
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
