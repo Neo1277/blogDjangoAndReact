@@ -44,9 +44,8 @@ class UpdateUserView(generics.RetrieveUpdateAPIView):
         # instance.username = request.data.get("username")
         instance.first_name = request.data.get("first_name")
         instance.last_name = request.data.get("last_name")
-        instance.last_name = request.data.get("last_name")
         instance.email = request.data.get("email")
-        instance.set_password(request.data.get('password'))
+        # instance.set_password(request.data.get('password'))
         instance.save()
 
         serializer = self.get_serializer(instance)
