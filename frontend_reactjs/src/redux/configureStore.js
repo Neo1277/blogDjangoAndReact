@@ -4,6 +4,7 @@ import { Genres } from './genres';
 import { Posts } from './posts';
 import { FeaturedPosts } from './featuredPosts';
 import { Comments } from './comments';
+import { UserData } from './userData';
 import { InitialComment } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -18,6 +19,7 @@ export const ConfigureStore = () => {
             featuredposts: FeaturedPosts,
             comments: Comments,
             auth: Auth,
+            user_data: UserData,
             ...createForms({
                 comment: InitialComment
             })

@@ -196,6 +196,51 @@ export const postComment = (post, content) => (dispatch) => {
 };
 
 /**
+ * Send rate request to save Post rating
+ */
+ export const ratePost = (post, rating) => (dispatch) => {
+
+  const author = localStorage.getItem('user_id');
+
+  //var string_rating = (rating).toString();;
+
+  const newRating = {
+    post: post,
+    author: author,
+    rating: rating
+  }
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  alert("rating value: "+ JSON.stringify(newRating));
+
+  return fetch(baseUrlApiRest + apiUrl + 'rate_posts', {
+    method: "POST",
+    body: JSON.stringify(newRating),
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': bearer
+    },
+    credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => { console.log('Rating', response); alert('Thank you for rating this post!\n'+JSON.stringify(response)); })
+  .catch(error =>  { console.log('Rating', error.message); alert('Your rating could not be saved\nError: '+error.message); });
+};
+
+/**
  ***********************************************
  * Login/Logout user JSON web token requests
  ***********************************************
@@ -256,6 +301,8 @@ export const loginUser = (creds) => (dispatch) => {
           localStorage.setItem('creds', JSON.stringify(creds));
           // Dispatch the success action
           dispatch(receiveLogin(response));
+          // Get user data after login
+          dispatch(fetchUserData());
       }
       else {
           var error = new Error('Error ' + response.status);
@@ -319,34 +366,26 @@ export const registerUser = (dataUser) => (dispatch) => {
   .catch(error =>  { console.log('Register user', error.message); alert('User could not be registered\nError: '+error.message); });
 };
 
-
 /**
- * Send rate request to save Post rating
+ * Register user
  */
- export const ratePost = (post, rating) => (dispatch) => {
-
-  const author = localStorage.getItem('user_id');
-
-  //var string_rating = (rating).toString();;
-
-  const newRating = {
-    post: post,
-    author: author,
-    rating: rating
-  }
+ export const updateUser = (dataUser) => (dispatch) => {
+  
+  // Link set formdata to send post request 
+  // https://stackoverflow.com/questions/48284011/how-to-post-image-with-fetch
+  
+  const user_id = localStorage.getItem('user_id');
 
   const bearer = 'Bearer ' + localStorage.getItem('token');
 
-  alert("rateing value: "+ JSON.stringify(newRating));
-
-  return fetch(baseUrlApiRest + apiUrl + 'rate_posts', {
-    method: "POST",
-    body: JSON.stringify(newRating),
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': bearer
-    },
-    credentials: "same-origin"
+  return fetch(baseUrlApiRest + apiUrl + 'update_user/' + user_id + '/', {
+      method: "PUT",
+      body: JSON.stringify(dataUser),
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': bearer
+      },
+      credentials: "same-origin"
   })
   .then(response => {
       if (response.ok) {
@@ -361,6 +400,54 @@ export const registerUser = (dataUser) => (dispatch) => {
           throw error;
     })
   .then(response => response.json())
-  .then(response => { console.log('Rating', response); alert('Thank you for rating this post!\n'+JSON.stringify(response)); })
-  .catch(error =>  { console.log('Rating', error.message); alert('Your rating could not be saved\nError: '+error.message); });
+  .then(response => { console.log('Update user', response); alert('Thank you for your updating!\n'+JSON.stringify(response)); })
+  .catch(error =>  { console.log('Update user', error.message); alert('User could not be updated\nError: '+error.message); });
 };
+
+/* Request to Django Rest framework and show error or proceed to dispatch the data  */
+export const fetchUserData = () => (dispatch) => {
+
+  dispatch(UserDataLoading(true));
+
+  const user_id = localStorage.getItem('user_id');
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  return fetch(baseUrlApiRest + apiUrl + 'update_user/' + user_id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': bearer
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  })
+  .then(response => response.json())
+  .then(user_data => dispatch(addUserData(user_data)))
+  .catch(error => dispatch(UserDataFailed(error.message)));
+}
+
+/* Call action type from genre reducer */
+export const UserDataLoading = () => ({
+    type: ActionTypes.USER_DATA_LOADING
+});
+
+/* Call action type from genre reducer */
+export const UserDataFailed = (errmess) => ({
+    type: ActionTypes.USER_DATA_FAILED,
+    payload: errmess
+});
+
+/* Call action type from comment reducer to add one comment */
+export const addUserData = (user_data) => ({
+  type: ActionTypes.ADD_USER_DATA,
+  payload: user_data
+});

@@ -16,7 +16,9 @@ import {
   loginUser, 
   logoutUser,
   registerUser,
-  ratePost
+  ratePost,
+  fetchUserData,
+  updateUser,
 } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
@@ -27,7 +29,8 @@ const mapStateToProps = state => {
     posts: state.posts,
     featuredposts: state.featuredposts,
     comments: state.comments,
-    auth: state.auth
+    auth: state.auth,
+    user_data: state.user_data,
   }
 }
 
@@ -39,9 +42,13 @@ const mapDispatchToProps = (dispatch) => ({
   fetchComments: () => { dispatch(fetchComments())},
   resetCommentForm: () => { dispatch(actions.reset('comment'))},
   postComment: (post, nickname, content) => dispatch(postComment(post, nickname, content)),
+
   loginUser: (creds) => dispatch(loginUser(creds)),
   logoutUser: () => dispatch(logoutUser()),
   registerUser: (dataUser) => dispatch(registerUser(dataUser)),
+  updateUser: (dataUser) => dispatch(updateUser(dataUser)),
+  fetchUserData: () => { dispatch(fetchUserData())},
+
   ratePost: (post, rating) => dispatch(ratePost(post, rating)),
 });
 
@@ -54,6 +61,7 @@ class Main extends Component {
     this.props.fetchPosts();
     this.props.fetchFeaturedPosts();
     this.props.fetchComments();
+    this.props.fetchUserData();
   }
 
   render(){
@@ -118,7 +126,7 @@ class Main extends Component {
             <Route path='/home' component={() => <Home genres={this.props.genres} featuredposts={this.props.featuredposts} posts={this.props.posts} />} />
             <Route path="/genre/:slug" component={GenreWithSlug} />
             <Route path="/post/:slugpost" component={PostWithSlug} />
-            <Route path='/profile-settings' component={() => <ProfileSettingsComponent />} />
+            <Route path='/profile-settings' component={() => <ProfileSettingsComponent user_data={this.props.user_data} updateUser={this.props.updateUser}  />} />
             <Redirect to="/home" />
           </Switch>
         <Footer />

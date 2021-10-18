@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
 import { 
-	Navbar, 
-	NavbarBrand, 
-	Nav, 
-	NavbarToggler, 
-	Collapse, 
-	NavItem, 
 	Button, 
-	Modal, 
-	ModalHeader, 
-	ModalBody,
 	Form, 
 	FormGroup, 
 	Input, 
     Label, 
-    TabContent, 
-    TabPane, 
-    Dropdown, 
-    DropdownToggle, 
-    DropdownMenu, 
-    DropdownItem 
 } from 'reactstrap';
 
+
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+/* Set data gotten from Django API with redux to the Cpmponent's props */
+/*const mapStateToProps = state => {
+    return{
+      user_data: state.user_data,
+    }
+}*/
+
+/* Set functions from ActionCreators redux to the Cpmponent's props and dispatch */
+/*const mapDispatchToProps = (dispatch) => ({
+    fetchUserData: () => { dispatch(fetchUserData())},
+});*/
+
 /**
- * Comments form
+ * User profile form
  */
+
 class ProfileSettingsComponent extends Component {
 
     constructor(props){
@@ -33,30 +35,23 @@ class ProfileSettingsComponent extends Component {
         this.handleRegister = this.handleRegister.bind(this);
     }
 
+  //Execute this before render
+  /*componentDidMount() {
+    this.props.fetchUserData();
+  }*/
     /**
      * 
      * Send parameters to do the post request and clear fields in the view
      */
 
     handleRegister(event) {
-        this.toggleModal();
-        this.props.registerUser({
-            username: this.username.value, 
+        //this.toggleModal();
+        this.props.updateUser({
             email: this.email.value, 
             first_name: this.first_name.value, 
             last_name: this.last_name.value, 
-            password: this.password.value, 
-            profile_image: this.state.profile_image
         });
-        /*
-        this.props.registerUser(
-            this.username.value, 
-            this.email.value, 
-            this.first_name.value, 
-            this.last_name.value, 
-            this.password.value, 
-            this.state.profile_image
-        );*/
+        
         event.preventDefault();
 
     }    
@@ -66,7 +61,9 @@ class ProfileSettingsComponent extends Component {
      * Render form with their respective validations
      */
     render(){
-
+        
+    console.log("Props2");
+    console.log(this.props.user_data.user_data.first_name);
         return(
             <div className="container">
                 <div className="row row-content">
@@ -77,29 +74,19 @@ class ProfileSettingsComponent extends Component {
 
                         <Form onSubmit={this.handleRegister}>
                             <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
                                 <Label htmlFor="first_name">First name</Label>
-                                <Input type="text" id="first_name" name="first_name"
+                                <Input type="text" id="first_name" name="first_name" defaultValue={this.props.user_data.user_data.first_name}
                                     innerRef={(input) => this.first_name = input} />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="last_name">Last name</Label>
-                                <Input type="text" id="last_name" name="last_name"
+                                <Input type="text" id="last_name" name="last_name" defaultValue={this.props.user_data.user_data.last_name}
                                     innerRef={(input) => this.last_name = input} />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="email">Email address</Label>
-                                <Input type="email" id="email" name="email"
+                                <Input type="email" id="email" name="email" defaultValue={this.props.user_data.user_data.email}
                                     innerRef={(input) => this.email = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input}  />
                             </FormGroup>
                             <FormGroup check>
                                 <Label check>
@@ -108,7 +95,7 @@ class ProfileSettingsComponent extends Component {
                                     Remember me
                                 </Label>
                             </FormGroup>
-                            <Button type="submit" value="submit" color="secondary">Sign up</Button>
+                            <Button type="submit" value="submit" color="secondary">Edit</Button>
                         </Form>
                     </div>
                 </div>
@@ -117,5 +104,8 @@ class ProfileSettingsComponent extends Component {
     }
 
 }
+
+//export default ProfileSettingsComponent;
+
 
 export default ProfileSettingsComponent;
