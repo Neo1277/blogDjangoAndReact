@@ -19,6 +19,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     Source:
     https://stackoverflow.com/a/29867704/9655579
     """
+    """
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
@@ -30,16 +31,17 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
-        """
+        
         user_profile_image = UserProfileImage(
             user=user,
             profile_image=validated_data['profile_image']
         )
 
         user_profile_image.save()
-        """
+        
 
         return user
+        """
 
 # Update profile data
 class UpdateUserSerializer(serializers.ModelSerializer):

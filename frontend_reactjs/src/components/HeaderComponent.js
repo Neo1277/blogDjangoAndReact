@@ -76,7 +76,8 @@ class Header extends Component{
 	    this.state = {
 		  isNavOpen: false,
           isModalOpen: false,
-          activeTab: '1'
+          activeTab: '1',
+          profile_image: null
 	    };
 	}
 
@@ -123,7 +124,8 @@ class Header extends Component{
             email: this.email.value, 
             first_name: this.first_name.value, 
             last_name: this.last_name.value, 
-            password: this.password.value
+            password: this.password.value, 
+            profile_image: this.state.profile_image
         });
         /*
         this.props.registerUser(
@@ -288,6 +290,11 @@ class Header extends Component{
                                             <Label htmlFor="password">Password</Label>
                                             <Input type="password" id="password" name="password"
                                                 innerRef={(input) => this.password = input}  />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Label htmlFor="profile_image">Profile image</Label>
+                                            <Input type="file" id="profile_image" name="profile_image"
+                                                  onChange={this.handleImageChange} />
                                         </FormGroup>
                                         <FormGroup check>
                                             <Label check>

@@ -1,6 +1,6 @@
 from django.http.response import JsonResponse
  
-from posts.models import Genre, Post, Image, Comment, PostRating, Round
+from posts.models import Genre, Post, Image, Comment, PostRating, Round, UserProfileImage
 
 from django.contrib.auth.models import User
 
@@ -31,7 +31,31 @@ Applying inheritance to classes
 """
 
 class RegisterUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
     serializer_class = RegisterUserSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        user = User.objects.create(
+            username=request.data.get('username'),
+            first_name=request.data.get('first_name'),
+            last_name=request.data.get('last_name'),
+            email=request.data.get('email'),
+        )
+
+        user.set_password(request.data.get('password'))
+        user.save()
+
+        user_profile_image = UserProfileImage.objects.create(
+            user=user,
+            profile_image=request.data.get('profile_image')
+        )
+
+        user_profile_image.save()
+
+        serializer_class = self.serializer_class(user)
+        return JsonResponse(serializer_class.data, safe=False, status=status.HTTP_200_OK)
+
 
 class UpdateUserView(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()

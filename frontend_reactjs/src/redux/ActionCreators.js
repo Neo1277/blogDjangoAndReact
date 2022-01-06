@@ -340,13 +340,26 @@ export const registerUser = (dataUser) => (dispatch) => {
   
   // Link set formdata to send post request 
   // https://stackoverflow.com/questions/48284011/how-to-post-image-with-fetch
+  //console.log(dataUser.profile_image);
+
   
+  let form_data = new FormData();
+  form_data.append('username', dataUser.username);
+  form_data.append('email', dataUser.email);
+  form_data.append('first_name', dataUser.first_name);
+  form_data.append('last_name', dataUser.last_name);
+  form_data.append('password', dataUser.password);
+  form_data.append('profile_image', dataUser.profile_image);
+  
+  //console.log(dataUser.profile_image);
   return fetch(baseUrlApiRest + apiUrl + 'users', {
       method: "POST",
-      body: JSON.stringify(dataUser),
-      headers: {
-        "Content-Type": "application/json"
-      },
+      //body: JSON.stringify(dataUser),
+      body: form_data,
+      /*headers: {
+        //"Content-Type": "application/json"
+        "Content-Type": "multipart/form-data",
+      },*/
       credentials: "same-origin"
   })
   .then(response => {
