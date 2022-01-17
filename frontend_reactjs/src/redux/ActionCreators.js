@@ -342,7 +342,6 @@ export const registerUser = (dataUser) => (dispatch) => {
   // https://stackoverflow.com/questions/48284011/how-to-post-image-with-fetch
   //console.log(dataUser.profile_image);
 
-  
   let form_data = new FormData();
   form_data.append('username', dataUser.username);
   form_data.append('email', dataUser.email);

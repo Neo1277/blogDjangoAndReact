@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'api/rate_posts$', views.PostRatingView.as_view(), name='rate_posts'),
     url(r'api/users', views.RegisterUserView.as_view(), name='users'),
     url(r'api/update_user/(?P<pk>\d+)/$', views.UpdateUserView.as_view(), name='update_user'),
+    url(r'api/profile_images$', views.ProfileImagesListView.as_view(), name='profile_images'),
 ]

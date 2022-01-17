@@ -43,12 +43,22 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return user
         """
 
+#Serialize Image profile nested array
+class ProfileImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserProfileImage
+        fields = ('__all__')
+
 # Update profile data
 class UpdateUserSerializer(serializers.ModelSerializer):
 
+    #Put images data inside postsgen as a nested array
+    user_profile_image = ProfileImageSerializer(read_only=True)
+
     class Meta:
         model = User
-        fields = ['first_name','last_name','email','password']
+        fields = ['first_name','last_name','email','password', 'user_profile_image']
         write_only_fields = ('password',)
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

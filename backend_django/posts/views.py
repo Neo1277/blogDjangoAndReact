@@ -11,7 +11,8 @@ from posts.serializers import (
     MyTokenObtainPairSerializer,
     RegisterUserSerializer,
     PostRatingSerializer,
-    UpdateUserSerializer
+    UpdateUserSerializer,
+    ProfileImageSerializer
 )
 
 from datetime import datetime
@@ -148,3 +149,9 @@ class PostRatingView(generics.ListCreateAPIView):
     IsAuthenticatedOrReadOnly
     https://www.django-rest-framework.org/api-guide/permissions/#isauthenticatedorreadonly
     """
+
+
+# Generic class-based views for retrieving profile images list requests
+class ProfileImagesListView(generics.ListAPIView):
+    serializer_class = ProfileImageSerializer
+    queryset = UserProfileImage.objects.all()
