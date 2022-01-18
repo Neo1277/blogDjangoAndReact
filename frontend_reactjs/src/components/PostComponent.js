@@ -97,18 +97,21 @@ class Comment extends Component {
 /**
  * Render comments
  */
-function RenderComments({comments}){
-
+function RenderComments({comments, profile_images}){
+    
+    const profile_images2 = profile_images.profile_images;
     return (
         <div className="container">
           <div className="row">
             <Media list>
                     {comments.map((comment) => {
+                        const profile_image = profile_images2.filter((profile_image) => profile_image.user === comment.author);
+
                         return (
                             <div key={comment.id} className="col-12 mt-5">
                                 <Media tag="li">
                                     <Media left middle>
-                                        <Media className="commentimg" object src="/assets/images/blank-profile-picture.png" alt={comment.nickname} />
+                                        <Media className="commentimg" object src={profile_image[0].profile_image} alt={comment.nickname} />
                                     </Media>
                                     <Media body className="ml-5">
                                         <h6>{comment.username}</h6>
@@ -225,7 +228,7 @@ const PostContent = (props) => {
                         
                     </div>
                     <div className="col-12">
-                        <RenderComments comments={props.comments.filter((comment) => comment.post === props.post.id)} />
+                        <RenderComments comments={props.comments.filter((comment) => comment.post === props.post.id)} profile_images={props.profile_images} />
                     </div>
                 </div>				
 			</div>

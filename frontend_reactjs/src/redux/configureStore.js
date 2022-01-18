@@ -5,6 +5,7 @@ import { Posts } from './posts';
 import { FeaturedPosts } from './featuredPosts';
 import { Comments } from './comments';
 import { UserData } from './userData';
+import { profileImages } from './profileImages';
 import { InitialComment } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -20,6 +21,7 @@ export const ConfigureStore = () => {
             comments: Comments,
             auth: Auth,
             user_data: UserData,
+            profile_images: profileImages,
             ...createForms({
                 comment: InitialComment
             })

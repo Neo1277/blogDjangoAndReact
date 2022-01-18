@@ -463,3 +463,41 @@ export const addUserData = (user_data) => ({
   type: ActionTypes.ADD_USER_DATA,
   payload: user_data
 });
+
+
+/* Request to Django Rest framework and show error or proceed to dispatch the data  */
+export const fetchProfileImages = () => (dispatch) => {
+
+  dispatch(ProfileImagesLoading(true));
+
+  return fetch(baseUrlApiRest + apiUrl + 'profile_images')
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  })
+  .then(response => response.json())
+  .then(profile_images => dispatch(addProfileImages(profile_images)))
+  .catch(error => dispatch(ProfileImagesFailed(error.message)));
+}
+
+/* Call action type from genre reducer */
+export const ProfileImagesLoading = () => ({
+    type: ActionTypes.PROFILE_IMAGES_LOADING
+});
+
+/* Call action type from genre reducer */
+export const ProfileImagesFailed = (errmess) => ({
+    type: ActionTypes.PROFILE_IMAGES_FAILED,
+    payload: errmess
+});
+
+/* Call action type from comment reducer to add one comment */
+export const addProfileImages = (profile_images) => ({
+  type: ActionTypes.ADD_PROFILE_IMAGES,
+  payload: profile_images
+});

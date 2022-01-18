@@ -19,6 +19,7 @@ import {
   ratePost,
   fetchUserData,
   updateUser,
+  fetchProfileImages,
 } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
@@ -31,6 +32,7 @@ const mapStateToProps = state => {
     comments: state.comments,
     auth: state.auth,
     user_data: state.user_data,
+    profile_images: state.profile_images,
   }
 }
 
@@ -49,6 +51,8 @@ const mapDispatchToProps = (dispatch) => ({
   updateUser: (dataUser) => dispatch(updateUser(dataUser)),
   fetchUserData: () => { dispatch(fetchUserData())},
 
+  fetchProfileImages: () => { dispatch(fetchProfileImages())},
+
   ratePost: (post, rating) => dispatch(ratePost(post, rating)),
 });
 
@@ -62,6 +66,7 @@ class Main extends Component {
     this.props.fetchFeaturedPosts();
     this.props.fetchComments();
     this.props.fetchUserData();
+    this.props.fetchProfileImages();
   }
 
   render(){
@@ -92,6 +97,7 @@ class Main extends Component {
           postComment={this.props.postComment} 
           isAbleToMakeComments={true}
           ratePost={this.props.ratePost} 
+          profile_images={this.props.profile_images} 
         />
         :
         <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
@@ -104,6 +110,7 @@ class Main extends Component {
           postComment={this.props.postComment} 
           isAbleToMakeComments={false}
           ratePost={this.props.ratePost} 
+          profile_images={this.props.profile_images} 
         />      
       );
     };
