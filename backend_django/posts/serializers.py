@@ -53,12 +53,13 @@ class ProfileImageSerializer(serializers.ModelSerializer):
 # Update profile data
 class UpdateUserSerializer(serializers.ModelSerializer):
 
-    #Put images data inside postsgen as a nested array
-    user_profile_image = ProfileImageSerializer(read_only=True)
+    #Set profile_image one to one relationship no nested object
+    #source https://stackoverflow.com/a/31947249/9655579
+    profile_image = serializers.ImageField(source='user_profile_image.profile_image')
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','email','password', 'user_profile_image']
+        fields = ['first_name','last_name','email','password', 'profile_image']
         write_only_fields = ('password',)
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

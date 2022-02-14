@@ -28,14 +28,11 @@ const DropdownMenuComponent = (props) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
   
     const toggle = () => setDropdownOpen(prevState => !prevState);
-  
-    console.log("User data HERE");
-    //console.log(props.user_data.user_data.user_profile_image.profile_image);
+
     return (
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-		{/*<img src={props.user_data.user_data.user_profile_image.profile_image} height="30" width="41" alt="My blog" />*/}
         <DropdownToggle caret>
-          Options
+            <img src={props.user_data.user_data.profile_image} height="30" width="41" alt="My blog" />
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem header>{props.auth.user.username}</DropdownItem>
@@ -203,7 +200,7 @@ class Header extends Component{
                                            
                                         </div> */
                                         <div>
-                                            <DropdownMenuComponent auth={this.props.auth} handleLogout={this.handleLogout} user_data={this.props.user_data}  />
+                                            <DropdownMenuComponent auth={this.props.auth} handleLogout={this.handleLogout}  user_data={this.props.user_data}  />
                                         </div>
                                         
                                     }
