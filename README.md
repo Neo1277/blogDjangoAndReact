@@ -13,7 +13,24 @@ This web application consists on a basic personal blog to make posts, to create 
 ## Database ##
 *   MySQL
 
-## Installation ##
+## Installation (with docker) ##
+*   You can install the application with docker with just these two commands: 
+	* ### `docker-compose build`
+*   The command above will take a while, after that run: 
+	* ### `docker-compose up -d`
+*   Now the application is ready, to create a super user to save data using the django admin use the following command: 
+	* ### `docker exec -it container_id python manage.py createsuperuser`
+*   The frontend application will run in the next link: 
+```
+http://localhost:3000/
+``` 
+*   The admin will run in the following link: 
+```
+http://localhost:8000/admin
+``` 
+*   Now is all ready, don't use the installation and how to run it that is below: 
+
+## Installation (without docker) ##
 *   First create a MySQL database named "posts" 
 *   To connect the Django application with the MySQL database, go to the settings.py file, which is located in the directory backend_django/backend_django and in DATABASES dictionary, configurate the cretentials, host and so on.
 *   Create a virtual enviroment for the django dependencies [Link official documentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
