@@ -14,6 +14,17 @@ This web application consists on a basic personal blog to make posts, to create 
 *   MySQL
 
 ## Installation (with docker) ##
+*   First of all, create a file named .env located in the directory backend_django/ and write the next credentials:
+```
+DEBUG=True
+SECRET_KEY=django-insecure-$nbsnagx0*0w0k_7o@$rt83#3@v%7u=_iu3=y7cd_o-aanydg$
+DATABASE_HOST=db
+DATABASE_ENGINE=django.db.backends.mysql
+DATABASE_PORT=3306
+DATABASE_NAME=posts
+DATABASE_PASSWORD=root
+DATABASE_USER=root
+``` 
 *   You can install the application with docker with just these two commands: 
 	* ### `docker-compose build`
 *   The command above will take a while, after that run: 
@@ -32,7 +43,17 @@ http://localhost:8000/admin
 
 ## Installation (without docker) ##
 *   First create a MySQL database named "posts" 
-*   To connect the Django application with the MySQL database, go to the settings.py file, which is located in the directory backend_django/backend_django and in DATABASES dictionary, configurate the cretentials, host and so on.
+*   To connect the Django application with the MySQL database, create a file named .env located in the directory backend_django and configurate the cretentials, host and so on.
+```
+DEBUG=True
+SECRET_KEY=django-insecure-$nbsnagx0*0w0k_7o@$rt83#3@v%7u=_iu3=y7cd_o-aanydg$
+DATABASE_HOST=localhost
+DATABASE_ENGINE=django.db.backends.mysql
+DATABASE_PORT=3306
+DATABASE_NAME=posts
+DATABASE_PASSWORD=
+DATABASE_USER=root
+``` 
 *   Create a virtual enviroment for the django dependencies [Link official documentation](https://docs.djangoproject.com/en/3.1/intro/contributing/#getting-a-copy-of-django-s-development-version "djangoenviroment")
 *   Activate the enviroment and go to the backend_django folder and install the Django dependencies with the following command using the requirements.txt file which has the dependencies
 	* ### `pip install -r requirements.txt`
