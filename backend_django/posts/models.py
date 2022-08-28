@@ -3,41 +3,11 @@ from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 import uuid
 import os
+from genres.models import Genre, get_file_path
 
-"""
-Generate unique name for each image in the folder posts
-Source: https://stackoverflow.com/a/2677474/9655579
-"""
-def get_file_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('posts', filename)
 
 #Source: Model field reference https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateTimeField
-class Genre(models.Model):
 
-    #Text that will be shown in Django Admin fields for this model
-    SHOW = 'YES'
-    NOTSHOW = 'NO'
-    SHOW_MENU_LIST_CHOICES = [
-        (SHOW, 'Show in menu list'),
-        (NOTSHOW, 'Not show in menu list'),
-    ]
-
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=200, unique=True)
-    description = models.CharField(max_length=200, null=True, blank=True)
-
-    #Add data with text to the field
-    show_menu_list = models.CharField(
-        max_length=3,
-        choices=SHOW_MENU_LIST_CHOICES,
-        default=NOTSHOW,
-    )
-    image_genre = models.ImageField(upload_to=get_file_path, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 class Post(models.Model):
 
@@ -74,12 +44,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='commentps')
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='commentus')
-    content = models.TextField()
-    datetime = models.DateTimeField(auto_now_add=True)
-    answer_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
 class Image(models.Model):
     #Field for one to many relation and set related name to serialize data with json
@@ -90,46 +54,6 @@ class Image(models.Model):
     
     def __str__(self):
         return self.post.title
-
-class PostRating(models.Model):
-
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='ratingps')
-
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='ratingus')
-
-    #Text that will be shown in Django Admin fields for this model
-    ONE_STAR = '1'
-    TWO_STARS = '2'
-    THREE_STARS = '3'
-    FOUR_STARS = '4'
-    FIVE_STARS = '5'
-
-    RATING_CHOICES = [
-        (ONE_STAR, 'One star'),
-        (TWO_STARS, 'Two stars'),
-        (THREE_STARS, 'Three stars'),
-        (FOUR_STARS, 'Three stars'),
-        (FIVE_STARS, 'Five stars'),
-    ]
-
-    #Add data with text to the field
-    rating = models.CharField(
-        max_length=1,
-        choices=RATING_CHOICES,
-    )
-
-    datetime = models.DateTimeField(auto_now_add=True)
-
-class UserProfileImage(models.Model):
-
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True,
-        related_name='user_profile_image'
-    )
-
-    profile_image = models.ImageField(upload_to=get_file_path)
 
 # Round to the nearest integer
 # https://stackoverflow.com/a/35945471
