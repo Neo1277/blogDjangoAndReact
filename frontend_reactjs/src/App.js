@@ -24,3 +24,11 @@ class App extends Component {
 }
 
 export default App;
+
+/**
+ * Run legacy version:
+ * "start": "react-scripts --openssl-legacy-provider start"
+ * instead of:
+ * "start": "react-scripts start"
+ * source: https://stackoverflow.com/a/69713899
+ */

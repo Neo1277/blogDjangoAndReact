@@ -132,8 +132,8 @@ function RenderComments({comments, profile_images}){
  * Show status if the page is Loading shows spinner else shows error or the page content
  */
 const PostContent = (props) => {
-	
-	if (props.postisLoading) {
+    
+	if (props.postisLoading || props.profile_imagesisLoading) {
 		
         return(
             <Loading />
@@ -142,6 +142,11 @@ const PostContent = (props) => {
     else if (props.posterrMess) {
         return(
             <h4>{props.posterrMess}</h4>
+        );
+    }
+    else if (props.profile_imageserrMess) {
+        return(
+            <h4>{props.profile_imageserrMess}</h4>
         );
     }
 	else{ 

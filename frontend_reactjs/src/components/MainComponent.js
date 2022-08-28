@@ -98,6 +98,8 @@ class Main extends Component {
           isAbleToMakeComments={true}
           ratePost={this.props.ratePost} 
           profile_images={this.props.profile_images} 
+          profile_imagesisLoading={this.props.profile_images.isLoading} 
+          profile_imageserrMess={this.props.profile_images.errMess} 
         />
         :
         <PostContent post={this.props.posts.posts.filter((post) => post.slug === match.params.slugpost)[0]}
@@ -111,6 +113,8 @@ class Main extends Component {
           isAbleToMakeComments={false}
           ratePost={this.props.ratePost} 
           profile_images={this.props.profile_images} 
+          profile_imageserrMess={this.props.profile_images.isLoading} 
+          profile_imageserrMess={this.props.profile_images.errMess} 
         />      
       );
     };

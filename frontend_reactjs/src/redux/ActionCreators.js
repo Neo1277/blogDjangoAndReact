@@ -190,7 +190,7 @@ export const postComment = (post, content) => (dispatch) => {
           throw error;
     })
   .then(response => response.json())
-  .then(response => dispatch(addComment(response)))
+  //.then(response => dispatch(addComment(response)))
   .then(response => { console.log('Comment', response); /*alert('Thank you for your comment!\n'+JSON.stringify(response));*/ })
   .catch(error =>  { console.log('comment', error.message); /*alert('Your comment could not be posted\nError: '+error.message);*/ });
 };
@@ -213,7 +213,7 @@ export const postComment = (post, content) => (dispatch) => {
   const bearer = 'Bearer ' + localStorage.getItem('token');
 
   alert("rating value: "+ JSON.stringify(newRating));
-
+  
   return fetch(baseUrlApiRest + apiUrl + 'rate_posts', {
     method: "POST",
     body: JSON.stringify(newRating),
