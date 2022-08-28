@@ -1,7 +1,8 @@
 from django.urls import include, path, reverse
 from rest_framework.test import APITestCase, URLPatternsTestCase, APIClient
 from rest_framework import status
-from .models import Genre, Post, Image
+from .models import Post, Image
+from genres.models import Genre
 
 from django.contrib.auth.models import User
 
@@ -113,7 +114,7 @@ class PostsTest(APITestCase):
 
     def test_genres_get_endpoint(self):
 
-        url = reverse('posts:genres')
+        url = reverse('genres:genres')
 
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
